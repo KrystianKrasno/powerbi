@@ -23,12 +23,12 @@
   }
 
   .forecast-day {
-    padding: 6px;
-    border-radius: 6px;
+    padding: 2px;
+    border-radius: 2px;
     background-color: transparent; 
     box-shadow: none; 
     width: 120px;
-    animation: fadeIn 1s ease-in-out;
+    animation: fadeIn 3s ease-in-out;
   }
 
   .date {
@@ -102,9 +102,9 @@
         dayDiv.className = 'forecast-day';
         dayDiv.innerHTML = `
           <div class="date">${formattedDate}</div>
-          <img class="forecast-icon" src="https:${day.day.condition.icon}" alt="${day.day.condition.text}">
-          <div class="temp">Max: ${day.day.maxtemp_c}°C<br>Min: ${day.day.mintemp_c}°C</div>
           <div class="desc">${day.day.condition.text}</div>
+          <img class="forecast-icon" src="https:${day.day.condition.icon}" alt="${day.day.condition.text}">
+          <div class="temp"> ${day.day.maxtemp_c}°C<br> ${day.day.mintemp_c}°C</div>
           <div class="precip">💧 ${day.day.totalprecip_mm} mm (${day.day.daily_chance_of_rain}%)</div>
         `;
         container.appendChild(dayDiv);
