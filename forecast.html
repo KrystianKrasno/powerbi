@@ -12,7 +12,7 @@
     text-align: center;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #f0f4f8, #dce3eb);
+    background: none; /* removed background gradient */
   }
 
   #forecast-container {
@@ -26,8 +26,8 @@
   .forecast-day {
     padding: 16px;
     border-radius: 12px;
-    background-color: rgba(255,255,255,0.85);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    background-color: transparent; /* removed card background */
+    box-shadow: none; /* removed shadow */
     width: 125px;
     animation: fadeIn 1s ease-in-out;
   }
@@ -35,26 +35,34 @@
   .date {
     font-size: 16px;
     font-weight: 600;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
   }
 
   .forecast-icon {
-    width: 50px;
-    height: 50px;
-    margin: 8px auto;
+    width: 70px; /* increased size */
+    height: 70px;
+    margin: 4px auto;
     display: block;
     animation: float 3s ease-in-out infinite alternate;
   }
 
   .temp {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
+    margin-top: 6px;
   }
 
   .desc {
     font-size: 14px;
     font-style: italic;
     color: #555;
+    margin-top: 4px;
+  }
+
+  .precip {
+    font-size: 14px;
+    color: #444;
+    margin-top: 4px;
   }
 
   @keyframes fadeIn {
@@ -89,25 +97,23 @@
       const response = await fetch(url);
       const data = await response.json();
 
-      // Clear previous forecast
-      container.innerHTML = '';
+      container.innerHTML = ''; // Clear previous forecast
 
       data.forecast.forecastday.forEach(day => {
-  const dateObj = new Date(day.date);
-  const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        const dateObj = new Date(day.date);
+        const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
-  const dayDiv = document.createElement('div');
-  dayDiv.className = 'forecast-day';
-  dayDiv.innerHTML = `
-    <div class="date">${formattedDate}</div>
-    <img class="forecast-icon" src="https:${day.day.condition.icon}" alt="${day.day.condition.text}">
-    <div class="temp"> ${day.day.maxtemp_c}°C<br> ${day.day.mintemp_c}°C</div>
-    <div class="desc">${day.day.condition.text}</div>
-    <div class="precip"> 💧 ${day.day.totalprecip_mm} mm (${day.day.daily_chance_of_rain}%)</div>
-  `;
-  container.appendChild(dayDiv);
-});
-
+        const dayDiv = document.createElement('div');
+        dayDiv.className = 'forecast-day';
+        dayDiv.innerHTML = `
+          <div class="date">${formattedDate}</div>
+          <img class="forecast-icon" src="https:${day.day.condition.icon}" alt="${day.day.condition.text}">
+          <div class="temp">Max: ${day.day.maxtemp_c}°C<br>Min: ${day.day.mintemp_c}°C</div>
+          <div class="desc">${day.day.condition.text}</div>
+          <div class="precip">💧 ${day.day.totalprecip_mm} mm (${day.day.daily_chance_of_rain}%)</div>
+        `;
+        container.appendChild(dayDiv);
+      });
 
     } catch (err) {
       container.innerHTML = '<div class="forecast-day">Forecast unavailable</div>';
@@ -115,14 +121,11 @@
     }
   }
 
-  // Allow dynamic city via URL ?city=CityName
   const params = new URLSearchParams(window.location.search);
   const cityParam = params.get('city');
 
-  // Initial load
   loadForecast(cityParam || defaultCity, forecastDays);
 
-  // Refresh every 30 minutes (1800000 ms)
   setInterval(() => loadForecast(cityParam || defaultCity, forecastDays), 1800000);
 </script>
 </body>
