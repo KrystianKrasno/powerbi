@@ -16,19 +16,19 @@
   }
 
   #weather {
-    padding: 8px;
+    padding: 4px;
     border-radius: 4px;
     background-color: transparent; 
     box-shadow: none; 
     display: inline-block;
-    margin-top: 10px;
-    animation: fadeIn 1s ease-in-out;
+    margin-top: 1px;
+    animation: fadeIn 3s ease-in-out;
   }
 
   .city {
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 4px;
+  
   }
 
   #weather-icon {
@@ -84,8 +84,8 @@
       const data = await response.json();
 
       document.querySelector('.city').textContent = data.location.name;
+       document.querySelector('.desc').textContent = data.current.condition.text;
       document.querySelector('.temp').textContent = Math.round(data.current.temp_c) + '°C';
-      document.querySelector('.desc').textContent = data.current.condition.text;
       document.querySelector('#weather-icon').src = 'https:' + data.current.condition.icon;
     } catch (err) {
       document.querySelector('.city').textContent = 'Weather unavailable';
