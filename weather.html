@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather Widget</title>
+
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #f0f4f8, #dce3eb);
+  }
+
+  #weather {
+    padding: 16px;
+    border-radius: 12px;
+    background-color: rgba(255,255,255,0.85);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    display: inline-block;
+    margin-top: 10px;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .city {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  #weather-icon {
+    width: 50px;
+    height: 50px;
+    margin: 8px auto;
+    display: block;
+    animation: float 3s ease-in-out infinite alternate;
+  }
+
+  .temp {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  .desc {
+    font-size: 16px;
+    font-style: italic;
+    color: #555;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+  }
+</style>
+</head>
+
+<body>
+  <div id="weather">
+    <div class="city">Loading...</div>
+    <img id="weather-icon" src="" alt="icon">
+    <div class="temp"></div>
+    <div class="desc"></div>
+  </div>
+
+<script>
+  // CONFIGURATION
+  const apiKey = '988a75984db348d385b184746252710'; // Replace with your WeatherAPI.com API key
+  const defaultCity = 'Toronto';
+
+  async function loadWeather(city = defaultCity) {
+    const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${encodeURIComponent(city)}&aqi=no`;
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      document.querySelector('.city').textContent = data.location.name;
+      document.querySelector('.temp').textContent = Math.round(data.current.temp_c) + '°C';
+      document.querySelector('.desc').textContent = data.current.condition.text;
+      document.querySelector('#weather-icon').src = 'https:' + data.current.condition.icon;
+    } catch (err) {
+      document.querySelector('.city').textContent = 'Weather unavailable';
+      document.querySelector('.temp').textContent = '';
+      document.querySelector('.desc').textContent = '';
+      document.querySelector('#weather-icon').src = '';
+      console.error('WeatherAPI error:', err);
+    }
+  }
+
+  // Allow dynamic city via URL ?city=CityName
+  const params = new URLSearchParams(window.location.search);
+  const cityParam = params.get('city');
+
+  // Initial load
+  loadWeather(cityParam || defaultCity);
+
+  // Refresh every hour (3600000 ms)
+  setInterval(() => loadWeather(cityParam || defaultCity), 3600000);
+</script>
+</body>
+</html>
