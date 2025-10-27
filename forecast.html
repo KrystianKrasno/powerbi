@@ -18,30 +18,28 @@
   #forecast-container {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    margin-top: 10px;
+    gap: 2px;
     flex-wrap: wrap;
   }
 
   .forecast-day {
-    padding: 16px;
-    border-radius: 12px;
+    padding: 6px;
+    border-radius: 6px;
     background-color: transparent; 
     box-shadow: none; 
-    width: 125px;
+    width: 120px;
     animation: fadeIn 1s ease-in-out;
   }
 
   .date {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
-    margin-bottom: 8px;
   }
 
   .forecast-icon {
     width: 70px; /*controls size of weather icons*/
     height: 70px;
-    margin: 4px auto;
+    margin: 2px auto;
     display: block;
     animation: float 3s ease-in-out infinite alternate;
   }
@@ -49,20 +47,17 @@
   .temp {
     font-size: 16px;
     font-weight: bold;
-    margin-top: 6px;
   }
 
   .desc {
     font-size: 14px;
     font-style: italic;
     color: #555;
-    margin-top: 4px;
   }
 
   .precip {
     font-size: 14px;
     color: #444;
-    margin-top: 4px;
   }
 
   @keyframes fadeIn {
