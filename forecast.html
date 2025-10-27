@@ -28,7 +28,7 @@
     border-radius: 12px;
     background-color: rgba(255,255,255,0.85);
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    width: 120px;
+    width: 125px;
     animation: fadeIn 1s ease-in-out;
   }
 
@@ -93,16 +93,21 @@
       container.innerHTML = '';
 
       data.forecast.forecastday.forEach(day => {
-        const dayDiv = document.createElement('div');
-        dayDiv.className = 'forecast-day';
-        dayDiv.innerHTML = `
-          <div class="date">${day.date}</div>
-          <img class="forecast-icon" src="https:${day.day.condition.icon}" alt="${day.day.condition.text}">
-          <div class="temp"> ${day.day.maxtemp_c}°C<br> ${day.day.mintemp_c}°C</div>
-          <div class="desc">${day.day.condition.text}</div>
-        `;
-        container.appendChild(dayDiv);
-      });
+  const dateObj = new Date(day.date);
+  const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+  const dayDiv = document.createElement('div');
+  dayDiv.className = 'forecast-day';
+  dayDiv.innerHTML = `
+    <div class="date">${formattedDate}</div>
+    <img class="forecast-icon" src="https:${day.day.condition.icon}" alt="${day.day.condition.text}">
+    <div class="temp"> ${day.day.maxtemp_c}°C<br> ${day.day.mintemp_c}°C</div>
+    <div class="desc">${day.day.condition.text}</div>
+    <div class="precip"> 💧 ${day.day.totalprecip_mm} mm (${day.day.daily_chance_of_rain}%)</div>
+  `;
+  container.appendChild(dayDiv);
+});
+
 
     } catch (err) {
       container.innerHTML = '<div class="forecast-day">Forecast unavailable</div>';
