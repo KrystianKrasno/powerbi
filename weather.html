@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weather Widget</title>
+<title>Current Weather Widget</title>
 
 <style>
   body {
@@ -12,42 +12,44 @@
     text-align: center;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #f0f4f8, #dce3eb);
+    background: none; 
   }
 
   #weather {
-    padding: 16px;
-    border-radius: 12px;
-    background-color: rgba(255,255,255,0.85);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    padding: 8px;
+    border-radius: 4px;
+    background-color: transparent; 
+    box-shadow: none; 
     display: inline-block;
     margin-top: 10px;
     animation: fadeIn 1s ease-in-out;
   }
 
   .city {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     margin-bottom: 4px;
   }
 
   #weather-icon {
-    width: 50px;
-    height: 50px;
-    margin: 8px auto;
+    width: 70px; 
+    height: 70px;
+    margin: 4px auto;
     display: block;
     animation: float 3s ease-in-out infinite alternate;
   }
 
   .temp {
-    font-size: 36px;
+    font-size: 18px;
     font-weight: bold;
+    margin-top: 4px;
   }
 
   .desc {
-    font-size: 16px;
+    font-size: 14px;
     font-style: italic;
     color: #555;
+    margin-top: 2px;
   }
 
   @keyframes fadeIn {
@@ -72,7 +74,7 @@
 
 <script>
   // CONFIGURATION
-  const apiKey = '988a75984db348d385b184746252710'; // Replace with your WeatherAPI.com API key
+  const apiKey = '988a75984db348d385b184746252710'; // Your WeatherAPI.com API key
   const defaultCity = 'Toronto';
 
   async function loadWeather(city = defaultCity) {
@@ -94,15 +96,12 @@
     }
   }
 
-  // Allow dynamic city via URL ?city=CityName
   const params = new URLSearchParams(window.location.search);
   const cityParam = params.get('city');
 
-  // Initial load
   loadWeather(cityParam || defaultCity);
 
-  // Refresh every hour (3600000 ms)
-  setInterval(() => loadWeather(cityParam || defaultCity), 1800000);
+  setInterval(() => loadWeather(cityParam || defaultCity), 1800000); // refresh every 30 min
 </script>
 </body>
 </html>
