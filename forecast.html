@@ -98,7 +98,7 @@
         dayDiv.innerHTML = `
           <div class="date">${day.date}</div>
           <img class="forecast-icon" src="https:${day.day.condition.icon}" alt="${day.day.condition.text}">
-          <div class="temp">Max: ${day.day.maxtemp_c}°C<br>Min: ${day.day.mintemp_c}°C</div>
+          <div class="temp"> ${day.day.maxtemp_c}°C<br> ${day.day.mintemp_c}°C</div>
           <div class="desc">${day.day.condition.text}</div>
         `;
         container.appendChild(dayDiv);
