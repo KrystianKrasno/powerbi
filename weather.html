@@ -84,12 +84,11 @@ body {
 .radar-map {
   position: right;
   flex-grow: 1;
-  height: 240px; 
+  height: 220px; 
   width: 100%;
   max-width: 600px;
-  border-radius: 12px;
+  border-radius: 2px;
   overflow: hidden;
-  margin-top: 1px; 
   box-shadow: 0 0 8px rgba(0,0,0,0.15);
 }
 
@@ -225,7 +224,7 @@ async function initializeRadarMap(location) {
 
   leafletMap = L.map('radar-map', {
     center: [location.lat, location.lon],
-    zoom: 7,
+    zoom: 6,
     zoomControl: false,
     attributionControl: false
   });

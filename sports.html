@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toronto Sports Dashboard</title>
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+}
+.dashboard-container {
+  width: 95%;
+  max-width: 900px;
+  margin-top: 10px;
+}
+.today, .forecast-grid {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.today {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.team-name {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.game-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 6px 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f8f8f8;
+}
+.game-card:hover { background: #e0e0e0; }
+.game-time { font-weight: 600; }
+.game-opponent { font-style: italic; }
+.game-score { font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="dashboard-container">
+  <div class="today" id="today-section">
+    <div class="team-name">Toronto Maple Leafs - Upcoming Games</div>
+    <div id="games-today"></div>
+  </div>
+
+  <div class="forecast-grid" id="forecast-grid">
+    <!-- Other teams / multi-day games -->
+  </div>
+</div>
+
+<script>
+const teams = [
+  { name: "Toronto Maple Leafs", id: 1349 }, // NHL
+  { name: "Toronto Raptors", id: 1348 }, // NBA
+  { name: "Toronto FC", id: 1335 } // MLS
+];
+
+async function fetchTeamGames(teamId) {
+  const url = `https://www.thesportsdb.com/api/v1/json/2/eventsnext.php?id=${teamId}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  return data?.events || [];
+}
+
+function renderGames(container, games) {
+  container.innerHTML = '';
+  games.forEach(g => {
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.innerHTML = `
+      <div class="game-time">${new Date(g.dateEvent + 'T' + g.strTime).toLocaleString('en-CA', { weekday:'short', hour:'2-digit', minute:'2-digit'})}</div>
+      <div class="game-opponent">${g.strEvent}</div>
+      <div class="game-score">${g.intHomeScore !== null ? g.intHomeScore + '-' + g.intAwayScore : ''}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+async function loadSportsDashboard() {
+  const todayEl = document.getElementById('games-today');
+  const forecastGridEl = document.getElementById('forecast-grid');
+
+  // Today section: Maple Leafs
+  const leafsGames = await fetchTeamGames(1349);
+  renderGames(todayEl, leafsGames.slice(0, 3));
+
+  // Forecast grid: Other teams
+  forecastGridEl.innerHTML = '';
+  for (const team of teams.filter(t => t.name !== "Toronto Maple Leafs")) {
+    const games = await fetchTeamGames(team.id);
+    const teamDiv = document.createElement('div');
+    teamDiv.className = 'today';
+    teamDiv.innerHTML = `<div class="team-name">${team.name}</div>`;
+    teamDivGames = document.createElement('div');
+    renderGames(teamDivGames, games.slice(0, 3));
+    teamDiv.appendChild(teamDivGames);
+    forecastGridEl.appendChild(teamDiv);
+  }
+}
+
+loadSportsDashboard();
+</script>
+</body>
+</html>
