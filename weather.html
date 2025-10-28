@@ -4,37 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Weather Forecast Dashboard</title>
-
-<!-- Leaflet CSS/JS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
 <style>
+/* ... Your existing CSS styles go here ... */
 body {
   font-family: 'Segoe UI', sans-serif;
-  color: #333;
   margin: 0;
-  padding: 0;
-  background: none;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #f7f7f7;
 }
 
 .forecast-container {
   width: 95%;
   max-width: 900px;
-  margin-top: 10px;
+  margin-top: 10px; 
   background: transparent;
   border-radius: 20px;
-  padding: 20px 25px 30px 25px;
+  padding: 10px 15px 15px 15px; 
 }
 
 .city-name {
-  font-size: 32px;
+  font-size: 24px; 
   font-weight: 700;
-  margin-bottom: 10px;
-  letter-spacing: 0.5px;
+  margin-bottom: 1px; 
   text-align: center;
 }
 
@@ -43,25 +38,23 @@ body {
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 25px;
+  gap: 25px; 
   margin-bottom: 25px;
-  animation: fadeIn 1s ease-in-out;
 }
 
 .today-left {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 15px;
+  gap: 15px; 
   flex-shrink: 0;
-  margin-left: 15px;
+  margin-left: 40px;
+  margin-top: 75px;
 }
 
 .today-icon {
-  width: 90px;
-  height: 90px;
-  flex-shrink: 0;
-  animation: float 3s ease-in-out infinite alternate;
+  width: 100px; 
+  height: 100px;
 }
 
 .today-info {
@@ -77,61 +70,58 @@ body {
 }
 
 .today-desc {
-  font-size: 18px;
+  font-size: 18px; /* original */
   font-style: italic;
   color: #555;
   margin-top: 6px;
 }
 
 .today-precip {
-  font-size: 16px;
+  font-size: 20px; 
   color: #444;
   margin-top: 6px;
 }
 
+/* Radar map slightly smaller vertically */
 .radar-map {
   position: relative;
   flex-grow: 1;
-  border: none;
-  height: 300px;
+  height: 240px; /* reduced slightly */
   width: 100%;
   max-width: 600px;
   border-radius: 12px;
   overflow: hidden;
-  animation: fadeIn 1.5s ease-in-out;
+  margin-top: 10px; /* slightly reduced */
+  box-shadow: 0 0 8px rgba(0,0,0,0.15);
 }
 
-/* Radar time label */
 #radar-time-label {
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top: 6px; 
+  left: 6px;
   background: rgba(0,0,0,0.5);
   color: #fff;
-  padding: 4px 8px;
+  padding: 3px 6px; 
   border-radius: 4px;
   font-size: 14px;
   z-index: 999;
 }
 
-/* Enhance radar tiles visibility */
-#radar-map img {
-  filter: contrast(180%) brightness(130%);
-}
-
+/* Forecast grid tighter */
 .forecast-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 10px;
+  gap: 6px; /* reduced gap */
+  margin-bottom: 5px; /* reduce vertical spacing */
 }
 
 .day-card {
-  background: transparent;
+  background: #fff;
   border-radius: 10px;
-  padding: 10px 8px;
+  padding: 6px 4px; /* reduced */
   text-align: center;
-  box-shadow: none;
   transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .day-card:hover {
@@ -146,8 +136,7 @@ body {
 .day-icon {
   width: 60px;
   height: 60px;
-  margin: 5px auto;
-  animation: float 3s ease-in-out infinite alternate;
+  margin: 3px auto; /* slightly tighter */
 }
 
 .day-temp {
@@ -163,153 +152,207 @@ body {
 .day-precip {
   font-size: 14px;
   color: #444;
-  margin-top: 4px;
+  margin-top: 2px; /* slightly tighter */
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-6px); }
-}
 </style>
 </head>
-
 <body>
+
 <div class="forecast-container" id="forecast-container">
   <div class="city-name" id="city-name">Loading...</div>
-  <div class="today" id="today-section"></div>
-  <div class="forecast-grid" id="forecast-grid"></div>
+  
+  <div class="today" id="today-section">
+    <div class="today-left" id="today-details">
+      </div>
+    <div id="radar-map" class="radar-map">
+      <div id="radar-time-label">Loading radar...</div>
+    </div>
+  </div>
+
+  <div class="forecast-grid" id="forecast-grid">
+    </div>
 </div>
 
 <script>
-const weatherApiKey = '988a75984db348d385b184746252710';  // WeatherAPI.com
-const owmApiKey = 'aafaede4f1ab72514a8758d17b571c9e'; // OpenWeatherMap
+// --- Configuration ---
+const weatherApiKey = '988a75984db348d385b184746252710'; // WARNING: Exposing this in client-side code is a security risk.
 const defaultCity = 'Toronto';
 const forecastDays = 6;
 
-// Debug mode
-const debugRadar = true;
-
+// --- DOM Elements ---
 const cityNameEl = document.getElementById('city-name');
-const todayEl = document.getElementById('today-section');
-const forecastGrid = document.getElementById('forecast-grid');
+const todayDetailsEl = document.getElementById('today-details');
+const forecastGridEl = document.getElementById('forecast-grid');
+const radarTimeLabelEl = document.getElementById('radar-time-label');
 
-async function loadForecast(city = defaultCity, days = forecastDays) {
+// --- State Variables ---
+let leafletMap = null;
+let radarInterval = null;
+
+/**
+ * Fetches weather data from the API
+ */
+async function fetchWeatherData(city, days) {
   const url = `https://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${encodeURIComponent(city)}&days=${days}&aqi=no&alerts=no&_=${Date.now()}`;
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  const data = await response.json();
+  if (!data?.location || !data?.forecast?.forecastday) {
+    throw new Error('Invalid data structure from weather API.');
+  }
+  return data;
+}
 
-    if (!data || !data.location) {
-      cityNameEl.textContent = 'Forecast unavailable';
+/**
+ * Renders the "Today" weather card
+ */
+function renderTodayUI(today) {
+  todayDetailsEl.innerHTML = `
+    <img src="https:${today.day.condition.icon}" class="today-icon" alt="${today.day.condition.text}">
+    <div class="today-info">
+      <div class="today-temp">${today.day.avgtemp_c.toFixed(1)}°C</div>
+      <div class="today-desc">${today.day.condition.text}</div>
+      <div class="today-precip">💧 ${today.day.totalprecip_mm.toFixed(1)} mm (${today.day.daily_chance_of_rain}%)</div>
+    </div>
+  `;
+}
+
+/**
+ * Renders the multi-day forecast grid
+ */
+function renderForecastUI(futureDays) {
+  forecastGridEl.innerHTML = ''; // Clear previous forecast
+  futureDays.forEach(day => {
+    const dateObj = new Date(day.date);
+    const dayLabel = dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    const card = document.createElement('div');
+    card.className = 'day-card';
+    card.innerHTML = `
+      <div class="day-date">${dayLabel}</div>
+      <img src="https:${day.day.condition.icon}" class="day-icon" alt="${day.day.condition.text}">
+      <div class="day-temp">${day.day.maxtemp_c.toFixed(0)}° / ${day.day.mintemp_c.toFixed(0)}°C</div>
+      <div class="day-desc">${day.day.condition.text}</div>
+      <div class="day-precip">💧 ${day.day.totalprecip_mm.toFixed(1)} mm (${day.day.daily_chance_of_rain}%)</div>
+    `;
+    forecastGridEl.appendChild(card);
+  });
+}
+
+/**
+ * Initializes the Leaflet radar map and animation
+ */
+async function initializeRadarMap(location) {
+  // --- 1. Clear existing map and interval (if they exist) ---
+  if (radarInterval) {
+    clearInterval(radarInterval);
+  }
+  if (leafletMap) {
+    leafletMap.remove(); // Properly destroy the old map instance
+    leafletMap = null;
+  }
+
+  // --- 2. Create new map instance ---
+  leafletMap = L.map('radar-map', {
+    center: [location.lat, location.lon],
+    zoom: 7,
+    zoomControl: false,
+    attributionControl: false
+  });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    opacity: 1
+  }).addTo(leafletMap);
+
+  // --- 3. Fetch and animate radar data ---
+  try {
+    const response = await fetch("https://tilecache.rainviewer.com/api/maps.json");
+    const times = await response.json();
+    const frames = times.slice(-25); // Get last 25 frames
+
+    if (frames.length === 0) {
+      radarTimeLabelEl.textContent = "Radar unavailable";
       return;
     }
 
-    const forecast = data.forecast.forecastday;
-    const today = forecast[0];
-    const futureDays = forecast.slice(1, 6);
-
-    cityNameEl.textContent = `${data.location.name}, ${data.location.region || data.location.country}`;
-    const lat = data.location.lat;
-    const lon = data.location.lon;
-
-    // Today section + radar
-    todayEl.innerHTML = `
-      <div class="today-left">
-        <img src="https:${today.day.condition.icon}" class="today-icon" alt="${today.day.condition.text}">
-        <div class="today-info">
-          <div class="today-temp">${today.day.avgtemp_c.toFixed(1)}°C</div>
-          <div class="today-desc">${today.day.condition.text}</div>
-          <div class="today-precip">💧 ${today.day.totalprecip_mm.toFixed(1)} mm (${today.day.daily_chance_of_rain}%)</div>
-        </div>
-      </div>
-      <div id="radar-map" class="radar-map">
-        <div id="radar-time-label">Loading...</div>
-      </div>
-    `;
-
-    // Leaflet map
-    const mapDiv = document.getElementById('radar-map');
-    mapDiv.innerHTML += '';
-    const map = L.map('radar-map', {
-      center: [lat, lon],
-      zoom: 6,
-      zoomControl: false,
-      attributionControl: false
+    const layers = frames.map(ts => {
+      const layer = L.tileLayer(`https://tilecache.rainviewer.com/v2/radar/${ts}/256/{z}/{x}/{y}/2/1_1.png`, { opacity: 0.7 });
+      layer.timestamp = ts;
+      return layer;
     });
 
-    // Base layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+    let frameIndex = 0;
+    const timeOptions = {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+      timeZone: location.tz_id, // Use timezone from weather API
+      timeZoneName: 'short'
+    };
 
-// Multi-frame radar animation for next 5 hours
-const frames = 5;
-const zoom = 6;
-const layers = [];
+    // Add first frame immediately
+    layers[0].addTo(leafletMap);
+    radarTimeLabelEl.textContent = `Radar: ${new Date(layers[0].timestamp * 1000).toLocaleTimeString("en-US", timeOptions)}`;
 
-for (let i = 0; i < frames; i++) {
-  const timestamp = Math.floor((Date.now() + i * 3600 * 1000) / 1000); // OpenWeatherMap expects seconds
-  const url = `https://tile.openweathermap.org/map/precipitation_new/${zoom}/{x}/{y}.png?appid=${owmApiKey}&dt=${timestamp}`;
-  const layer = L.tileLayer(url, { opacity: 0.0 });
-  layers.push({ layer, time: timestamp });
-
-  if (debugRadar) console.log(`Radar frame ${i} URL: ${url}`);
-}
-
-const timeLabelEl = document.getElementById('radar-time-label');
-let current = 0;
-
-function updateRadarFrame() {
-  map.eachLayer(l => { if (layers.map(f => f.layer).includes(l)) map.removeLayer(l); });
-  layers[current].layer.addTo(map);
-
-  const frameTime = new Date(layers[current].time * 1000); // convert back to ms
-  const estTime = frameTime.toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-    timeZone: 'America/New_York'
-  });
-  timeLabelEl.textContent = estTime; // EST/EDT automatically
-
-  current = (current + 1) % layers.length;
-}
-
-updateRadarFrame();
-setInterval(updateRadarFrame, 1000);
-
-    // Forecast grid
-    forecastGrid.innerHTML = '';
-    futureDays.forEach(day => {
-      const dateObj = new Date(day.date);
-      const dayLabel = dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-      const card = document.createElement('div');
-      card.className = 'day-card';
-      card.innerHTML = `
-        <div class="day-date">${dayLabel}</div>
-        <img src="https:${day.day.condition.icon}" class="day-icon" alt="${day.day.condition.text}">
-        <div class="day-temp">${day.day.maxtemp_c.toFixed(0)}° / ${day.day.mintemp_c.toFixed(0)}°C</div>
-        <div class="day-desc">${day.day.condition.text}</div>
-        <div class="day-precip">💧 ${day.day.totalprecip_mm.toFixed(1)} mm (${day.day.daily_chance_of_rain}%)</div>
-      `;
-      forecastGrid.appendChild(card);
-    });
+    // Animate remaining frames
+    radarInterval = setInterval(() => {
+      layers.forEach(l => leafletMap.removeLayer(l)); // Remove all
+      
+      frameIndex = (frameIndex + 1) % layers.length; // Move to next frame
+      layers[frameIndex].addTo(leafletMap); // Add current frame
+      
+      const t = new Date(layers[frameIndex].timestamp * 1000).toLocaleTimeString("en-US", timeOptions);
+      radarTimeLabelEl.textContent = `Radar: ${t}`;
+    }, 1000);
 
   } catch (err) {
-    cityNameEl.textContent = 'Forecast unavailable';
-    console.error('WeatherAPI error:', err);
+    radarTimeLabelEl.textContent = "Radar unavailable";
+    console.error("Failed to load radar data:", err);
   }
 }
 
-const params = new URLSearchParams(window.location.search);
-const cityParam = params.get('city');
-loadForecast(cityParam || defaultCity, forecastDays);
+/**
+ * Main application controller
+ */
+async function loadWeather(city, days) {
+  try {
+    cityNameEl.textContent = `Loading ${city}...`;
+    todayDetailsEl.innerHTML = '';
+    forecastGridEl.innerHTML = '';
+    radarTimeLabelEl.textContent = 'Loading radar...';
 
-// Refresh every 30 minutes
-setInterval(() => loadForecast(cityParam || defaultCity, forecastDays), 1800000);
+    const data = await fetchWeatherData(city, days);
+
+    const { location, forecast } = data;
+    const today = forecast.forecastday[0];
+    const futureDays = forecast.forecastday.slice(1, days);
+
+    // Update UI components
+    cityNameEl.textContent = `${location.name}, ${location.region || location.country}`;
+    renderTodayUI(today);
+    renderForecastUI(futureDays);
+    initializeRadarMap(location);
+
+  } catch (err) {
+    cityNameEl.textContent = 'Forecast unavailable';
+    console.error(err);
+  }
+}
+
+/**
+ * Initializes the application on page load
+ */
+function init() {
+  const params = new URLSearchParams(window.location.search);
+  const cityParam = params.get('city');
+  loadWeather(cityParam || defaultCity, forecastDays);
+}
+
+// Run the app
+init();
+
 </script>
 </body>
 </html>
