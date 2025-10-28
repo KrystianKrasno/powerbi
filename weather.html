@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
-/* ... Your existing CSS styles go here ... */
 body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
@@ -26,13 +25,6 @@ body {
   padding: 10px 15px 15px 15px; 
 }
 
-.city-name {
-  font-size: 24px; 
-  font-weight: 700;
-  margin-bottom: 1px; 
-  text-align: left;
-}
-
 .today {
   display: flex;
   flex-direction: row;
@@ -48,23 +40,23 @@ body {
 
 .today-left {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 15px; 
-  flex-shrink: 0;
-  margin-left: 40px;
-  margin-top: 75px;
+  flex-direction: column;  /* stack city, icon, temp vertically */
+  align-items: flex-start;
+  gap: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.today-info .city-name {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  text-align: left;
 }
 
 .today-icon {
-  width: 100px; 
+  width: 100px;
   height: 100px;
-}
-
-.today-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 }
 
 .today-temp {
@@ -74,16 +66,14 @@ body {
 }
 
 .today-desc {
-  font-size: 18px; /* original */
+  font-size: 18px;
   font-style: italic;
   color: #555;
-  margin-top: 6px;
 }
 
 .today-precip {
   font-size: 20px; 
   color: #444;
-  margin-top: 6px;
 }
 
 /* Radar map */
@@ -163,59 +153,47 @@ body {
 <body>
 
 <div class="forecast-container" id="forecast-container">
-  <div class="city-name" id="city-name">Loading...</div>
-  
+
   <div class="today" id="today-section">
     <div class="today-left" id="today-details">
-      </div>
+      <!-- Today info will be rendered here -->
+    </div>
     <div id="radar-map" class="radar-map">
       <div id="radar-time-label">Loading radar...</div>
     </div>
   </div>
 
   <div class="forecast-grid" id="forecast-grid">
-    </div>
+    <!-- Multi-day forecast -->
+  </div>
 </div>
 
 <script>
-// --- Configuration ---
-const weatherApiKey = '988a75984db348d385b184746252710'; // WARNING: Exposing this in client-side code is a security risk.
+const weatherApiKey = '988a75984db348d385b184746252710';
 const defaultCity = 'Toronto';
 const forecastDays = 6;
 
-// --- DOM Elements ---
-const cityNameEl = document.getElementById('city-name');
 const todayDetailsEl = document.getElementById('today-details');
 const forecastGridEl = document.getElementById('forecast-grid');
 const radarTimeLabelEl = document.getElementById('radar-time-label');
 
-// --- State Variables ---
 let leafletMap = null;
 let radarInterval = null;
 
-/**
- * Fetches weather data from the API
- */
 async function fetchWeatherData(city, days) {
   const url = `https://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${encodeURIComponent(city)}&days=${days}&aqi=no&alerts=no&_=${Date.now()}`;
   const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   const data = await response.json();
-  if (!data?.location || !data?.forecast?.forecastday) {
-    throw new Error('Invalid data structure from weather API.');
-  }
+  if (!data?.location || !data?.forecast?.forecastday) throw new Error('Invalid data structure from weather API.');
   return data;
 }
 
-/**
- * Renders the "Today" weather card
- */
-function renderTodayUI(today) {
+function renderTodayUI(today, locationName) {
   todayDetailsEl.innerHTML = `
-    <img src="https:${today.day.condition.icon}" class="today-icon" alt="${today.day.condition.text}">
     <div class="today-info">
+      <div class="city-name">${locationName}</div>
+      <img src="https:${today.day.condition.icon}" class="today-icon" alt="${today.day.condition.text}">
       <div class="today-temp">${today.day.avgtemp_c.toFixed(1)}°C</div>
       <div class="today-desc">${today.day.condition.text}</div>
       <div class="today-precip">💧 ${today.day.totalprecip_mm.toFixed(1)} mm (${today.day.daily_chance_of_rain}%)</div>
@@ -223,11 +201,8 @@ function renderTodayUI(today) {
   `;
 }
 
-/**
- * Renders the multi-day forecast grid
- */
 function renderForecastUI(futureDays) {
-  forecastGridEl.innerHTML = ''; // Clear previous forecast
+  forecastGridEl.innerHTML = '';
   futureDays.forEach(day => {
     const dateObj = new Date(day.date);
     const dayLabel = dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
@@ -244,38 +219,24 @@ function renderForecastUI(futureDays) {
   });
 }
 
-/**
- * Initializes the Leaflet radar map and animation
- */
 async function initializeRadarMap(location) {
-  // --- 1. Clear existing map and interval (if they exist) ---
-  if (radarInterval) {
-    clearInterval(radarInterval);
-  }
-  if (leafletMap) {
-    leafletMap.remove(); // Properly destroy the old map instance
-    leafletMap = null;
-  }
+  if (radarInterval) clearInterval(radarInterval);
+  if (leafletMap) { leafletMap.remove(); leafletMap = null; }
 
-  // --- 2. Create new map instance ---
   leafletMap = L.map('radar-map', {
     center: [location.lat, location.lon],
     zoom: 7,
     zoomControl: false,
     attributionControl: false
   });
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    opacity: 1
-  }).addTo(leafletMap);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, opacity: 1 }).addTo(leafletMap);
 
-  // --- 3. Fetch and animate radar data ---
   try {
     const response = await fetch("https://tilecache.rainviewer.com/api/maps.json");
     const times = await response.json();
-    const frames = times.slice(-25); // Get last 25 frames
+    const frames = times.slice(-25);
 
-    if (frames.length === 0) {
+    if (!frames.length) {
       radarTimeLabelEl.textContent = "Radar unavailable";
       return;
     }
@@ -291,21 +252,17 @@ async function initializeRadarMap(location) {
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
-      timeZone: location.tz_id, // Use timezone from weather API
+      timeZone: location.tz_id,
       timeZoneName: 'short'
     };
 
-    // Add first frame immediately
     layers[0].addTo(leafletMap);
     radarTimeLabelEl.textContent = `Radar: ${new Date(layers[0].timestamp * 1000).toLocaleTimeString("en-US", timeOptions)}`;
 
-    // Animate remaining frames
     radarInterval = setInterval(() => {
-      layers.forEach(l => leafletMap.removeLayer(l)); // Remove all
-      
-      frameIndex = (frameIndex + 1) % layers.length; // Move to next frame
-      layers[frameIndex].addTo(leafletMap); // Add current frame
-      
+      layers.forEach(l => leafletMap.removeLayer(l));
+      frameIndex = (frameIndex + 1) % layers.length;
+      layers[frameIndex].addTo(leafletMap);
       const t = new Date(layers[frameIndex].timestamp * 1000).toLocaleTimeString("en-US", timeOptions);
       radarTimeLabelEl.textContent = `Radar: ${t}`;
     }, 1000);
@@ -316,46 +273,34 @@ async function initializeRadarMap(location) {
   }
 }
 
-/**
- * Main application controller
- */
 async function loadWeather(city, days) {
   try {
-    cityNameEl.textContent = `Loading ${city}...`;
     todayDetailsEl.innerHTML = '';
     forecastGridEl.innerHTML = '';
     radarTimeLabelEl.textContent = 'Loading radar...';
 
     const data = await fetchWeatherData(city, days);
-
     const { location, forecast } = data;
     const today = forecast.forecastday[0];
     const futureDays = forecast.forecastday.slice(1, days);
 
-    // Update UI components
-    cityNameEl.textContent = `${location.name}, ${location.region || location.country}`;
-    renderTodayUI(today);
+    renderTodayUI(today, `${location.name}, ${location.region || location.country}`);
     renderForecastUI(futureDays);
     initializeRadarMap(location);
 
   } catch (err) {
-    cityNameEl.textContent = 'Forecast unavailable';
+    todayDetailsEl.innerHTML = 'Forecast unavailable';
     console.error(err);
   }
 }
 
-/**
- * Initializes the application on page load
- */
 function init() {
   const params = new URLSearchParams(window.location.search);
   const cityParam = params.get('city');
   loadWeather(cityParam || defaultCity, forecastDays);
 }
 
-// Run the app
 init();
-
 </script>
 </body>
 </html>
