@@ -27,8 +27,8 @@
     border-radius: 2px;
     background-color: transparent; 
     box-shadow: none; 
-    width: 120px;
-    animation: fadeIn 3s ease-in-out;
+    width: 160px;
+    animation: fadeIn 2s ease-in-out;
   }
 
   .date {
@@ -81,7 +81,7 @@
   // CONFIGURATION
   const apiKey = '988a75984db348d385b184746252710'; // Your WeatherAPI.com API key
   const defaultCity = 'Toronto';
-  const forecastDays = 3; // Number of days to display
+  const forecastDays = 4; // Fetch one extra day to safely filter out past dates
 
   const container = document.getElementById('forecast-container');
 
@@ -94,7 +94,16 @@
 
       container.innerHTML = ''; // Clear previous forecast
 
-      data.forecast.forecastday.forEach(day => {
+      // Get today's date (midnight, local time)
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      // Filter only today and the next 2 days
+      const filteredDays = data.forecast.forecastday
+        .filter(d => new Date(d.date) >= today)
+        .slice(0, 3); // ensure we only keep 3 days
+
+      filteredDays.forEach(day => {
         const dateObj = new Date(day.date);
         const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
@@ -104,7 +113,7 @@
           <div class="date">${formattedDate}</div>
           <div class="desc">${day.day.condition.text}</div>
           <img class="forecast-icon" src="https:${day.day.condition.icon}" alt="${day.day.condition.text}">
-          <div class="temp"> ${day.day.maxtemp_c}°C<br> ${day.day.mintemp_c}°C</div>
+          <div class="temp">${day.day.maxtemp_c}°C<br>${day.day.mintemp_c}°C</div>
           <div class="precip">💧 ${day.day.totalprecip_mm} mm (${day.day.daily_chance_of_rain}%)</div>
         `;
         container.appendChild(dayDiv);
@@ -121,7 +130,6 @@
 
   loadForecast(cityParam || defaultCity, forecastDays);
 
+  // Refresh every 30 minutes
   setInterval(() => loadForecast(cityParam || defaultCity, forecastDays), 1800000);
 </script>
-</body>
-</html>
