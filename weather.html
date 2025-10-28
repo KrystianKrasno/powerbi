@@ -3,53 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Current Weather Widget</title>
+<title>Weather Forecast Dashboard</title>
 
 <style>
   body {
     font-family: 'Segoe UI', sans-serif;
     color: #333;
-    text-align: center;
     margin: 0;
     padding: 0;
-    background: none; 
+    background: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  #weather {
-    padding: 4px;
-    border-radius: 4px;
-    background-color: transparent; 
-    box-shadow: none; 
-    display: inline-block;
-    margin-top: 1px;
-    animation: fadeIn 3s ease-in-out;
+  .forecast-container {
+    width: 95%;
+    max-width: 700px;
+    margin-top: 10px;
+    background: transparent;
+    border-radius: 20px;
+    padding: 20px 25px 30px 25px;
   }
 
-  .city {
-    font-size: 24px;
-    font-weight: 600;
-  
+  .city-name {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
   }
 
-  #weather-icon {
-    width: 70px; 
-    height: 70px;
-    margin: 4px auto;
-    display: block;
+  .today {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .today-icon {
+    width: 120px;
+    height: 120px;
     animation: float 3s ease-in-out infinite alternate;
   }
 
-  .temp {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 4px;
+  .today-temp {
+    font-size: 52px;
+    font-weight: 600;
+    margin-top: 10px;
   }
 
-  .desc {
-    font-size: 18px;
+  .today-desc {
+    font-size: 20px;
     font-style: italic;
     color: #555;
-    margin-top: 2px;
+  }
+
+  .today-precip {
+    font-size: 16px;
+    color: #444;
+    margin-top: 6px;
+  }
+
+  .forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+  }
+
+  .day-card {
+    background: transparent;
+    border-radius: 10px;
+    padding: 10px 8px;
+    text-align: center;
+    box-shadow: none;
+    transition: transform 0.3s ease;
+  }
+
+  .day-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .day-date {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .day-icon {
+    width: 60px;
+    height: 60px;
+    margin: 5px auto;
+    animation: float 3s ease-in-out infinite alternate;
+  }
+
+  .day-temp {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .day-desc {
+    font-size: 14px;
+    color: #555;
+  }
+
+  .day-precip {
+    font-size: 14px;
+    color: #444;
+    margin-top: 4px;
   }
 
   @keyframes fadeIn {
@@ -59,49 +119,77 @@
 
   @keyframes float {
     0% { transform: translateY(0); }
-    100% { transform: translateY(-5px); }
+    100% { transform: translateY(-6px); }
   }
 </style>
 </head>
 
 <body>
-  <div id="weather">
-    <div class="city">Loading...</div>
-    <img id="weather-icon" src="" alt="icon">
-    <div class="temp"></div>
-    <div class="desc"></div>
+  <div class="forecast-container" id="forecast-container">
+    <div class="city-name" id="city-name">Loading...</div>
+
+    <div class="today" id="today-section"></div>
+
+    <div class="forecast-grid" id="forecast-grid"></div>
   </div>
 
 <script>
-  // CONFIGURATION
-  const apiKey = '988a75984db348d385b184746252710'; // Your WeatherAPI.com API key
+  const apiKey = '988a75984db348d385b184746252710'; // Replace with your API key
   const defaultCity = 'Toronto';
+  const forecastDays = 6; // Today + 5 days
 
-  async function loadWeather(city = defaultCity) {
-    const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${encodeURIComponent(city)}&aqi=no`;
+  const cityNameEl = document.getElementById('city-name');
+  const todayEl = document.getElementById('today-section');
+  const forecastGrid = document.getElementById('forecast-grid');
+
+  async function loadForecast(city = defaultCity, days = forecastDays) {
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${encodeURIComponent(city)}&days=${days}&aqi=no&alerts=no&_=${Date.now()}`;
+
     try {
       const response = await fetch(url);
       const data = await response.json();
 
-      document.querySelector('.city').textContent = data.location.name;
-       document.querySelector('.desc').textContent = data.current.condition.text;
-      document.querySelector('.temp').textContent = Math.round(data.current.temp_c) + '°C';
-      document.querySelector('#weather-icon').src = 'https:' + data.current.condition.icon;
+      const forecast = data.forecast.forecastday;
+      const today = forecast[0];
+      const futureDays = forecast.slice(1, 6);
+
+      cityNameEl.textContent = `${data.location.name}, ${data.location.region || data.location.country}`;
+
+      todayEl.innerHTML = `
+        <img src="https:${today.day.condition.icon}" class="today-icon" alt="${today.day.condition.text}">
+        <div class="today-temp">${today.day.avgtemp_c.toFixed(1)}°C</div>
+        <div class="today-desc">${today.day.condition.text}</div>
+        <div class="today-precip">💧 ${today.day.totalprecip_mm.toFixed(1)} mm (${today.day.daily_chance_of_rain}%)</div>
+      `;
+
+      forecastGrid.innerHTML = '';
+      futureDays.forEach(day => {
+        const dateObj = new Date(day.date);
+        const dayLabel = dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+        const card = document.createElement('div');
+        card.className = 'day-card';
+        card.innerHTML = `
+          <div class="day-date">${dayLabel}</div>
+          <img src="https:${day.day.condition.icon}" class="day-icon" alt="${day.day.condition.text}">
+          <div class="day-temp">${day.day.maxtemp_c.toFixed(0)}° / ${day.day.mintemp_c.toFixed(0)}°C</div>
+          <div class="day-desc">${day.day.condition.text}</div>
+          <div class="day-precip">💧 ${day.day.totalprecip_mm.toFixed(1)} mm (${day.day.daily_chance_of_rain}%)</div>
+        `;
+        forecastGrid.appendChild(card);
+      });
+
     } catch (err) {
-      document.querySelector('.city').textContent = 'Weather unavailable';
-      document.querySelector('.temp').textContent = '';
-      document.querySelector('.desc').textContent = '';
-      document.querySelector('#weather-icon').src = '';
+      cityNameEl.textContent = 'Forecast unavailable';
       console.error('WeatherAPI error:', err);
     }
   }
 
   const params = new URLSearchParams(window.location.search);
   const cityParam = params.get('city');
+  loadForecast(cityParam || defaultCity, forecastDays);
 
-  loadWeather(cityParam || defaultCity);
-
-  setInterval(() => loadWeather(cityParam || defaultCity), 1800000); // refresh every 30 min
+  // Auto-refresh every 30 minutes
+  setInterval(() => loadForecast(cityParam || defaultCity, forecastDays), 1800000);
 </script>
 </body>
 </html>
