@@ -21,7 +21,7 @@ body {
   width: 95%;
   max-width: 900px;
   margin-top: 10px; 
-  background: transparent;
+  background: #fff;
   border-radius: 20px;
   padding: 10px 15px 15px 15px; 
 }
@@ -38,8 +38,12 @@ body {
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 25px; 
+  gap: 25px;
   margin-bottom: 25px;
+  background: #fff;
+  border-radius: 10px;  
+  padding: 10px 15px;       
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
 }
 
 .today-left {
@@ -82,16 +86,16 @@ body {
   margin-top: 6px;
 }
 
-/* Radar map slightly smaller vertically */
+/* Radar map */
 .radar-map {
   position: relative;
   flex-grow: 1;
-  height: 240px; /* reduced slightly */
+  height: 240px; 
   width: 100%;
   max-width: 600px;
   border-radius: 12px;
   overflow: hidden;
-  margin-top: 10px; /* slightly reduced */
+  margin-top: 10px; 
   box-shadow: 0 0 8px rgba(0,0,0,0.15);
 }
 
@@ -107,18 +111,17 @@ body {
   z-index: 999;
 }
 
-/* Forecast grid tighter */
 .forecast-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 6px; /* reduced gap */
-  margin-bottom: 5px; /* reduce vertical spacing */
+  gap: 6px; 
+  margin-bottom: 5px; 
 }
 
 .day-card {
   background: #fff;
   border-radius: 10px;
-  padding: 6px 4px; /* reduced */
+  padding: 6px 4px; 
   text-align: center;
   transition: transform 0.3s ease;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
