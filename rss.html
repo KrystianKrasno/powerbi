@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toyota News Headlines</title>
+<style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f8fc 0%, #eef2f7 100%);
+    margin: 0;
+    padding: 16px;
+    color: #1a1a1a;
+  }
+
+  h2 {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #0a3d62;
+    border-left: 4px solid #0078d7;
+    padding-left: 8px;
+  }
+
+  .news-column {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 14px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    max-width: 500px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .news-item a {
+    text-decoration: none;
+    color: #0078d7;
+    font-weight: 600;
+    font-size: 1em;
+  }
+
+  .news-item a:hover {
+    text-decoration: underline;
+  }
+
+  .published {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="news-column">
+    <h2>Toyota News</h2>
+    <div id="rss-headlines"><p>Loading...</p></div>
+  </div>
+
+<script>
+const rssFeedUrl = "https://media.toyota.ca/en/rss.html";
+const maxItems = 5;
+const rotateInterval = 5000; // 5 seconds
+
+// rss2json endpoint (free, public, CORS-friendly)
+const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssFeedUrl)}`;
+
+async function fetchRSS() {
+  const container = document.getElementById("rss-headlines");
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    if (!data.items || data.items.length === 0) {
+      container.innerHTML = "<p>No headlines found.</p>";
+      return;
+    }
+
+    const headlines = data.items.slice(0, maxItems).map(item => ({
+      title: item.title,
+      link: item.link,
+      pubDate: item.pubDate
+    }));
+
+    rotateHeadlines(headlines);
+  } catch (err) {
+    console.error("RSS fetch failed:", err);
+    container.innerHTML = "<p>Failed to load headlines.</p>";
+  }
+}
+
+function rotateHeadlines(headlines) {
+  const container = document.getElementById("rss-headlines");
+  let index = 0;
+
+  function showNext() {
+    const h = headlines[index];
+    container.innerHTML = `
+      <div class="news-item">
+        <a href="${h.link}" target="_blank" rel="noopener noreferrer">${h.title}</a>
+        <div class="published">${h.pubDate ? new Date(h.pubDate).toLocaleDateString("en-CA") : ""}</div>
+      </div>
+    `;
+    index = (index + 1) % headlines.length;
+  }
+
+  showNext();
+  setInterval(showNext, rotateInterval);
+}
+
+// Start fetching and rotating headlines
+fetchRSS();
+</script>
+</body>
+</html>
