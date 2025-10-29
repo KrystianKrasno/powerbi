@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toronto Headlines</title>
+<style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f8fc 0%, #eef2f7 100%);
+    margin: 0;
+    padding: 16px;
+    color: #1a1a1a;
+  }
+
+  h2 {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #0a3d62;
+    border-left: 4px solid #0078d7;
+    padding-left: 8px;
+  }
+
+  .news-column {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 14px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    max-width: 500px;
+  }
+
+  .news-item {
+    border-bottom: 1px solid #eee;
+    padding: 8px 0;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .news-item:last-child {
+    border-bottom: none;
+  }
+
+  .news-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .news-item a {
+    text-decoration: none;
+    color: #0078d7;
+    font-weight: 600;
+    font-size: 1em;
+  }
+
+  .news-item a:hover {
+    text-decoration: underline;
+  }
+
+  .source, .published {
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  .source {
+    margin-top: 2px;
+  }
+
+  .published {
+    color: #888;
+  }
+</style>
+</head>
+<body>
+  <div class="news-column">
+    <h2>Toronto Headlines</h2>
+    <div id="news-toronto"><p>Loading...</p></div>
+  </div>
+
+<script>
+const apiKey = "pub_95f087fdb99a44e0ac0a11fd045ead00"; // Your actual API key
+
+async function fetchTorontoNews(limit = 3) {
+  const container = document.getElementById("news-toronto");
+  const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&country=ca&language=en&category=sports`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    container.innerHTML = "";
+
+    if (!data.results || data.results.length === 0) {
+      container.innerHTML = "<p>No Toronto headlines found.</p>";
+      return;
+    }
+
+    // Deduplicate by title
+    const unique = [];
+    const seen = new Set();
+    for (const article of data.results) {
+      const key = (article.title || "").toLowerCase().split(" ").slice(0, 6).join(" ");
+      if (!seen.has(key)) {
+        seen.add(key);
+        unique.push(article);
+      }
+    }
+
+    // Shuffle and pick top 3
+    unique.sort(() => Math.random() - 0.5);
+    const selected = unique.slice(0, limit);
+
+    selected.forEach(article => {
+      const div = document.createElement("div");
+      div.className = "news-item";
+      const pubDate = article.pubDate ? new Date(article.pubDate).toLocaleDateString() : "";
+      div.innerHTML = `
+        <a href="${article.link}" target="_blank" rel="noopener noreferrer">${article.title}</a>
+        <div class="source">${article.source_id ? "Source: " + article.source_id : ""}</div>
+        <div class="published">${pubDate}</div>
+      `;
+      container.appendChild(div);
+    });
+  } catch (error) {
+    console.error("News fetch failed:", error);
+    container.innerHTML = "<p>Failed to load Toronto headlines.</p>";
+  }
+}
+
+fetchTorontoNews();
+</script>
+</body>
+</html>
