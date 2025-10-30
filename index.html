@@ -18,6 +18,7 @@
   .article-desc { font-size:16px; color:#333333; line-height:1.5; }
   .article img { width:160px; height:auto; margin-left:20px; object-fit:cover; }
   .no-articles { font-size:18px; color:#999; text-align:center; margin-top:40px; }
+  .error-details { font-size:14px; color:#666; text-align:center; margin-top:10px; font-family:monospace; }
 </style>
 </head>
 <body>
@@ -36,18 +37,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('articles');
   const timestamp = document.getElementById('timestamp');
 
-  // Full path to JSON on GitHub Pages
-  const jsonUrl = 'https://krystiankrasno.github.io/powerbi/toyota_news.json?t=' + new Date().getTime();
+  // Use relative path - adjust based on where index.html is located
+  // If index.html is in root and JSON is in powerbi/, use: 'powerbi/toyota_news.json'
+  // If index.html is in powerbi/, use: 'toyota_news.json'
+  const jsonUrl = 'powerbi/toyota_news.json?t=' + new Date().getTime();
+
+  console.log('Fetching from:', jsonUrl); // Debug log
 
   fetch(jsonUrl)
     .then(res => {
-      if (!res.ok) throw new Error('Network response was not ok');
+      console.log('Response status:', res.status); // Debug log
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
       return res.json();
     })
     .then(data => {
+      console.log('Data received:', data); // Debug log
       container.innerHTML = ''; // clear loading
       const articles = data.articles || [];
-      timestamp.textContent = new Date(data.fetched_at).toLocaleString('en-CA', { dateStyle:'medium', timeStyle:'short' });
+      timestamp.textContent = new Date(data.fetched_at).toLocaleString('en-CA', { 
+        dateStyle:'medium', 
+        timeStyle:'short' 
+      });
 
       if (articles.length === 0) {
         container.innerHTML = '<div class="no-articles">No articles found.</div>';
@@ -71,7 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(err => {
       console.error('Failed to load articles:', err);
-      container.innerHTML = '<div class="no-articles">Failed to load articles.</div>';
+      container.innerHTML = `
+        <div class="no-articles">Failed to load articles.</div>
+        <div class="error-details">${err.message}</div>
+      `;
       timestamp.textContent = '';
     });
 });
