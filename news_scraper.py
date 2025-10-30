@@ -79,7 +79,7 @@ def extract_release_links_by_date(soup, limit=5):
     print(f"Found {len(text_nodes)} date nodes")
 
     for node in text_nodes:
-        date_text = DATE_RE.search(node).group(0).strip()
+        date_text = DATE_RE.search(node).group(0).strip() # type: ignore
         parent = node.parent
         link = None
 
