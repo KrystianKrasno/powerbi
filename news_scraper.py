@@ -134,7 +134,16 @@ def fetch_toyota_news(limit=2):
     }
 
 if __name__ == "__main__":
-    news_data = fetch_toyota_news(limit=2)
-    with open("toyota_news.json", "w", encoding="utf-8") as f:
-        json.dump(news_data, f, ensure_ascii=False, indent=2)
-    print("toyota_news.json generated successfully.")
+    import sys
+    import traceback
+    try:
+        news_data = fetch_toyota_news(limit=2)
+        import os
+        os.makedirs("powerbi", exist_ok=True)
+        with open("powerbi/toyota_news.json", "w", encoding="utf-8") as f:
+            import json
+            json.dump(news_data, f, ensure_ascii=False, indent=2)
+        print("toyota_news.json generated successfully.")
+    except Exception:
+        traceback.print_exc()
+        sys.exit(2)
