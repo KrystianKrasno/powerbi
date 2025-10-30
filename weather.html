@@ -19,10 +19,10 @@ body {
 .forecast-container {
   width: 95%;
   max-width: 900px;
-  margin-top: 1px; 
+  margin-top: 1px;
   background: transparent;
   border-radius: 20px;
-  padding: 10px 15px 15px 15px; 
+  padding: 10px 15px 15px 15px;
 }
 
 .today {
@@ -31,10 +31,10 @@ body {
   gap: 10px;
   margin-bottom: 2px;
   background: #fff;
-  border-radius: 10px;  
-  padding: 10px 15px;       
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-  position: relative; 
+  border-radius: 10px;
+  padding: 10px 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
 }
 
 .today-left {
@@ -43,9 +43,9 @@ body {
   background: #fff;
   align-items: flex-start;
   gap: 2px;
-  margin-left: 40px; 
-  margin-right: 40px; 
-  margin-top: 10px;   
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 10px;
 }
 
 .city-name {
@@ -54,8 +54,8 @@ body {
   margin-bottom: 16px;
   background: #fff;
   position: absolute;
-  top: 10px;      /* align with top of .today container / map */
-  left: 15px;     /* small left padding from container edge */
+  top: 10px;
+  left: 15px;
   text-align: left;
   z-index: 10;
 }
@@ -79,29 +79,29 @@ body {
 }
 
 .today-precip {
-  font-size: 20px; 
+  font-size: 20px;
   color: #444;
 }
 
 /* Radar map */
 .radar-map {
-  position: right;
   flex-grow: 1;
-  height: 220px; 
+  height: 220px;
   width: 100%;
   max-width: 600px;
   border-radius: 2px;
   overflow: hidden;
   box-shadow: 0 0 8px rgba(0,0,0,0.15);
+  position: relative;
 }
 
 #radar-time-label {
   position: absolute;
-  top: 6px; 
+  top: 6px;
   left: 6px;
   background: rgba(0,0,0,0.5);
   color: #fff;
-  padding: 3px 6px; 
+  padding: 3px 6px;
   border-radius: 4px;
   font-size: 14px;
   z-index: 999;
@@ -110,14 +110,14 @@ body {
 .forecast-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 2px; 
-  margin-bottom: 2px; 
+  gap: 2px;
+  margin-bottom: 2px;
 }
 
 .day-card {
   background: #fff;
   border-radius: 10px;
-  padding: 6px 4px; 
+  padding: 6px 4px;
   text-align: center;
   transition: transform 0.3s ease;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -135,7 +135,7 @@ body {
 .day-icon {
   width: 60px;
   height: 60px;
-  margin: 3px auto; 
+  margin: 3px auto;
 }
 
 .day-temp {
@@ -151,7 +151,7 @@ body {
 .day-precip {
   font-size: 14px;
   color: #444;
-  margin-top: 2px; 
+  margin-top: 2px;
 }
 </style>
 </head>
@@ -159,17 +159,13 @@ body {
 
 <div class="forecast-container" id="forecast-container">
   <div class="today" id="today-section">
-    <div class="today-left" id="today-details">
-      <!-- Today info will be rendered here -->
-    </div>
+    <div class="today-left" id="today-details"></div>
     <div id="radar-map" class="radar-map">
       <div id="radar-time-label">Loading radar...</div>
     </div>
   </div>
 
-  <div class="forecast-grid" id="forecast-grid">
-    <!-- Multi-day forecast -->
-  </div>
+  <div class="forecast-grid" id="forecast-grid"></div>
 </div>
 
 <script>
@@ -236,7 +232,8 @@ async function initializeRadarMap(location) {
   try {
     const response = await fetch("https://tilecache.rainviewer.com/api/maps.json");
     const times = await response.json();
-    const frames = times.slice(-25);
+    // Pull more history for smoother animation
+    const frames = times.slice(-40); 
 
     if (!frames.length) {
       radarTimeLabelEl.textContent = "Radar unavailable";
@@ -244,12 +241,19 @@ async function initializeRadarMap(location) {
     }
 
     const layers = frames.map(ts => {
-      const layer = L.tileLayer(`https://tilecache.rainviewer.com/v2/radar/${ts}/256/{z}/{x}/{y}/2/1_1.png`, { opacity: 0.7 });
+      const layer = L.tileLayer(`https://tilecache.rainviewer.com/v2/radar/${ts}/256/{z}/{x}/{y}/2/1_1.png`, {
+        opacity: 0,
+        zIndex: 5
+      });
       layer.timestamp = ts;
+      layer.addTo(leafletMap);
       return layer;
     });
 
     let frameIndex = 0;
+    const fadeDuration = 500;  // ms fade transition
+    const frameInterval = 700; // shorter delay per frame for smoother effect
+
     const timeOptions = {
       hour: "2-digit",
       minute: "2-digit",
@@ -258,16 +262,29 @@ async function initializeRadarMap(location) {
       timeZoneName: 'short'
     };
 
-    layers[0].addTo(leafletMap);
-    radarTimeLabelEl.textContent = `Radar: ${new Date(layers[0].timestamp * 1000).toLocaleTimeString("en-US", timeOptions)}`;
+    function showFrame(index) {
+      layers.forEach((layer, i) => {
+        const targetOpacity = (i === index) ? 0.7 : 0;
+        const currentOpacity = layer.options.opacity;
+        const step = (targetOpacity - currentOpacity) / (fadeDuration / 50);
+        let elapsed = 0;
 
+        const fade = setInterval(() => {
+          elapsed += 50;
+          const newOpacity = currentOpacity + step * (elapsed / 50);
+          layer.setOpacity(Math.max(0, Math.min(0.7, newOpacity)));
+          if (elapsed >= fadeDuration) clearInterval(fade);
+        }, 50);
+      });
+      const t = new Date(layers[index].timestamp * 1000).toLocaleTimeString("en-US", timeOptions);
+      radarTimeLabelEl.textContent = `Radar: ${t}`;
+    }
+
+    showFrame(frameIndex);
     radarInterval = setInterval(() => {
-      layers.forEach(l => leafletMap.removeLayer(l));
       frameIndex = (frameIndex + 1) % layers.length;
-      layers[frameIndex].addTo(leafletMap);
-      const t = new Date(layers[frameIndex].timestamp * 1000).toLocaleTimeString("en-US", timeOptions);
-      radarTimeLabelEl.textContent = `${t}`;
-    }, 1000);
+      showFrame(frameIndex);
+    }, frameInterval);
 
   } catch (err) {
     radarTimeLabelEl.textContent = "Radar unavailable";
