@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup, NavigableString
+from bs4 import BeautifulSoup
 from datetime import datetime
 import json
 import re
@@ -14,10 +14,11 @@ HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 DATE_RE = re.compile(
     r'\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|'
     r'Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)'
-    r'\s+\d{1,2},\s+\d{4}\b', flags=re.IGNORECASE
+    r'\s+\d{1,2},?\s+\d{4}\b', flags=re.IGNORECASE
 )
 
 def norm_url(href):
+    """Normalize URLs to full absolute URLs."""
     href = href.strip()
     if href.startswith('//'):
         return 'https:' + href
@@ -40,7 +41,7 @@ def fetch_article_details(url):
         if meta_og and meta_og.get('content'):
             img_url = meta_og['content'].strip()
 
-        # Fallback
+        # Fallback to first image in article
         if not img_url:
             img = soup.select_one('article img, .release img, img')
             if img and img.get('src'):
@@ -48,7 +49,7 @@ def fetch_article_details(url):
         if img_url:
             img_url = norm_url(img_url)
 
-        # Description
+        # Description - get first substantial paragraph
         desc = ""
         candidates = (soup.select('article p') or
                       soup.select('.entry-content p') or
@@ -70,75 +71,102 @@ def fetch_article_details(url):
         print(f"Warning: Failed to fetch details from {url}: {e}")
         return "", ""
 
-def extract_release_links_by_date(soup, limit=5):
-    """Finds the top n release links based on date nodes."""
+def extract_articles_from_page(soup, limit=5):
+    """
+    Extract article links from Toyota Canada media page.
+    Looks for all <a> tags with href matching /releases/YEAR/
+    """
     results = []
-    seen = set()
-    text_nodes = soup.find_all(string=DATE_RE)
-
-    print(f"Found {len(text_nodes)} date nodes")
-
-    for node in text_nodes:
-        date_text = DATE_RE.search(node).group(0).strip() # type: ignore
-        parent = node.parent
-        link = None
-
-        # Look for valid link near date
-        if parent:
-            link = parent.find('a', href=True)
-        if not link:
-            nxt = parent
-            steps = 0
-            while nxt and steps < 6:
-                nxt = nxt.find_next()
-                if nxt and nxt.name == 'a' and nxt.get('href'):
-                    link = nxt
+    seen_urls = set()
+    
+    # Find all links that match the release pattern
+    all_links = soup.find_all('a', href=re.compile(r'/releases/(2024|2025)/'))
+    
+    print(f"Found {len(all_links)} potential article links")
+    
+    for link in all_links:
+        if len(results) >= limit:
+            break
+            
+        href = link.get('href', '').strip()
+        if not href:
+            continue
+        
+        # Normalize URL
+        full_url = norm_url(href)
+        
+        # Skip duplicates
+        if full_url in seen_urls:
+            continue
+        seen_urls.add(full_url)
+        
+        # Get title from link text
+        title = link.get_text(" ", strip=True)
+        
+        # If title is too short, look for nearby heading
+        if not title or len(title) < 15:
+            parent = link.parent
+            for _ in range(3):  # Check up to 3 parent levels
+                if parent:
+                    heading = parent.find(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
+                    if heading:
+                        title = heading.get_text(" ", strip=True)
+                        if len(title) >= 15:
+                            break
+                    parent = parent.parent
+        
+        # Skip if still no good title
+        if not title or len(title) < 15:
+            continue
+        
+        # Try to find date near the link
+        date_text = "Recent"
+        parent = link.parent
+        for _ in range(4):  # Check up to 4 parent levels for date
+            if parent:
+                parent_text = parent.get_text()
+                date_match = DATE_RE.search(parent_text)
+                if date_match:
+                    date_text = date_match.group(0).strip().upper()
                     break
-                steps += 1
-        if not link and parent and parent.parent:
-            link = parent.parent.find('a', href=True)
-
-        if link:
-            href = link.get('href').strip()
-            full = norm_url(href)
-            if full in seen:
-                continue
-            title = link.get_text(" ", strip=True)
-            if not title or len(title) < 8:
-                h = parent.find(['h1','h2','h3','h4'])
-                if h:
-                    title = h.get_text(" ", strip=True)
-            if not title or len(title) < 8:
-                continue
-            seen.add(full)
-            print(f"Found article: {date_text} - {title[:50]}...")
-            results.append((date_text, title, full))
-            if len(results) >= limit:
-                break
+                parent = parent.parent
+        
+        print(f"Found: {date_text} - {title[:70]}...")
+        results.append((date_text, title, full_url))
+    
     return results
 
-def fetch_toyota_news(limit=2):
+def fetch_toyota_news(limit=5):
     """Scrapes Toyota Media Site and returns JSON-ready dict."""
     print(f"Fetching news from {LIST_URL}")
-    r = requests.get(LIST_URL, timeout=15, headers=HEADERS)
-    r.raise_for_status()
-    print(f"Status code: {r.status_code}")
+    
+    try:
+        r = requests.get(LIST_URL, timeout=15, headers=HEADERS)
+        r.raise_for_status()
+        print(f"Status code: {r.status_code}")
+    except requests.RequestException as e:
+        print(f"ERROR: Failed to fetch page: {e}")
+        raise
     
     soup = BeautifulSoup(r.text, "html.parser")
-
-    date_links = extract_release_links_by_date(soup, limit)
     
-    if not date_links:
+    # Extract articles
+    article_links = extract_articles_from_page(soup, limit)
+    
+    if not article_links:
         print("WARNING: No articles found on the page")
+    else:
+        print(f"Successfully found {len(article_links)} articles")
     
+    # Fetch details for each article
     items = []
-    for date_text, title, url in date_links:
-        print(f"Fetching details for: {url}")
+    for idx, (date_text, title, url) in enumerate(article_links, 1):
+        print(f"[{idx}/{len(article_links)}] Fetching details: {url}")
         img_url, desc = fetch_article_details(url)
         items.append({
             "date": date_text,
             "title": title,
-            "description": desc[:600],
+            "description": desc[:600] if desc else "No description available.",
             "image_url": img_url,
             "url": url
         })
@@ -151,8 +179,11 @@ def fetch_toyota_news(limit=2):
 
 def main():
     try:
-        print("Starting Toyota news scraper...")
-        news_data = fetch_toyota_news(limit=2)
+        print("=" * 60)
+        print("Toyota Canada News Scraper")
+        print("=" * 60)
+        
+        news_data = fetch_toyota_news(limit=5)
         
         # Create directory if it doesn't exist
         os.makedirs("powerbi", exist_ok=True)
@@ -162,12 +193,13 @@ def main():
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(news_data, f, ensure_ascii=False, indent=2)
         
+        print("=" * 60)
         print(f"✓ Successfully wrote {len(news_data['articles'])} articles to {output_path}")
+        print("=" * 60)
         
-        # Exit with success even if no articles found (to avoid breaking the workflow)
-        if len(news_data['articles']) == 0:
-            print("WARNING: No articles were scraped, but JSON file was created")
-            sys.exit(0)
+        # Show summary
+        for idx, article in enumerate(news_data['articles'], 1):
+            print(f"{idx}. {article['date']} - {article['title'][:60]}...")
         
         sys.exit(0)
         
