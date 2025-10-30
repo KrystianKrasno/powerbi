@@ -8,8 +8,22 @@
   body { font-family: sans-serif; margin:0; padding:0; background:#fff; }
   .header { background-color:#EB0A1E; color:white; padding:20px 40px; display:flex; justify-content:space-between; align-items:center; }
   .header h1 { margin:0; font-size:28px; }
-  .article-list { padding:30px 40px; }
-  .article { display:flex; margin-bottom:40px; border-bottom:1px solid #e0e0e0; padding-bottom:20px; }
+  .article-container { padding:30px 40px; position:relative; min-height:300px; }
+  .article { 
+    display:flex; 
+    margin-bottom:40px; 
+    border-bottom:1px solid #e0e0e0; 
+    padding-bottom:20px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    width: calc(100% - 80px);
+    top: 30px;
+  }
+  .article.active {
+    opacity: 1;
+    position: relative;
+  }
   .article-content { flex:1; }
   .article-date { font-size:14px; color:#666666; margin-bottom:6px; }
   .article-title { font-size:20px; color:#EB0A1E; font-weight:700; margin:0 0 12px 0; }
@@ -17,6 +31,46 @@
   .article-title a:hover { text-decoration:underline; }
   .article-desc { font-size:16px; color:#333333; line-height:1.5; }
   .article img { width:160px; height:auto; margin-left:20px; object-fit:cover; }
+  .carousel-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+  }
+  .carousel-dots {
+    display: flex;
+    gap: 8px;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .dot.active {
+    background: #EB0A1E;
+  }
+  .carousel-btn {
+    background: #EB0A1E;
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+  }
+  .carousel-btn:hover {
+    background: #c00918;
+  }
   .no-articles { font-size:18px; color:#999; text-align:center; margin-top:40px; }
   .error-details { font-size:14px; color:#666; text-align:center; margin-top:10px; font-family:monospace; }
 </style>
@@ -28,34 +82,41 @@
   <div id="timestamp">Loading...</div>
 </div>
 
-<div class="article-list" id="articles">
+<div class="article-container" id="articles">
   <div class="no-articles">Loading articles...</div>
+</div>
+
+<div class="carousel-controls" id="controls" style="display:none;">
+  <button class="carousel-btn" id="prevBtn">‹</button>
+  <div class="carousel-dots" id="dots"></div>
+  <button class="carousel-btn" id="nextBtn">›</button>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('articles');
   const timestamp = document.getElementById('timestamp');
+  const controls = document.getElementById('controls');
+  const dotsContainer = document.getElementById('dots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  
+  let currentIndex = 0;
+  let articles = [];
+  let autoRotateInterval;
 
-  // Use relative path - adjust based on where index.html is located
-  // If index.html is in root and JSON is in powerbi/, use: 'powerbi/toyota_news.json'
-  // If index.html is in powerbi/, use: 'toyota_news.json'
   const jsonUrl = 'powerbi/toyota_news.json?t=' + new Date().getTime();
-
-  console.log('Fetching from:', jsonUrl); // Debug log
 
   fetch(jsonUrl)
     .then(res => {
-      console.log('Response status:', res.status); // Debug log
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
       return res.json();
     })
     .then(data => {
-      console.log('Data received:', data); // Debug log
-      container.innerHTML = ''; // clear loading
-      const articles = data.articles || [];
+      container.innerHTML = '';
+      articles = data.articles || [];
       timestamp.textContent = new Date(data.fetched_at).toLocaleString('en-CA', { 
         dateStyle:'medium', 
         timeStyle:'short' 
@@ -66,9 +127,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      articles.forEach(article => {
+      // Create article elements
+      articles.forEach((article, index) => {
         const div = document.createElement('div');
         div.className = 'article';
+        if (index === 0) div.classList.add('active');
 
         div.innerHTML = `
           <div class="article-content">
@@ -79,7 +142,20 @@ document.addEventListener('DOMContentLoaded', () => {
           ${article.image_url ? `<img src="${article.image_url}" alt="Article image">` : ''}
         `;
         container.appendChild(div);
+
+        // Create dot indicator
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
       });
+
+      // Show controls if more than one article
+      if (articles.length > 1) {
+        controls.style.display = 'flex';
+        startAutoRotate();
+      }
     })
     .catch(err => {
       console.error('Failed to load articles:', err);
@@ -89,6 +165,55 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       timestamp.textContent = '';
     });
+
+  function goToSlide(index) {
+    const articleElements = container.querySelectorAll('.article');
+    const dots = dotsContainer.querySelectorAll('.dot');
+    
+    // Remove active class from all
+    articleElements.forEach(el => el.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    // Add active class to current
+    currentIndex = index;
+    articleElements[currentIndex].classList.add('active');
+    dots[currentIndex].classList.add('active');
+    
+    // Reset auto-rotate timer
+    resetAutoRotate();
+  }
+
+  function nextSlide() {
+    const next = (currentIndex + 1) % articles.length;
+    goToSlide(next);
+  }
+
+  function prevSlide() {
+    const prev = (currentIndex - 1 + articles.length) % articles.length;
+    goToSlide(prev);
+  }
+
+  function startAutoRotate() {
+    autoRotateInterval = setInterval(nextSlide, 5000); // Rotate every 5 seconds
+  }
+
+  function resetAutoRotate() {
+    clearInterval(autoRotateInterval);
+    startAutoRotate();
+  }
+
+  // Button event listeners
+  nextBtn.addEventListener('click', nextSlide);
+  prevBtn.addEventListener('click', prevSlide);
+
+  // Pause auto-rotate on hover
+  container.addEventListener('mouseenter', () => {
+    clearInterval(autoRotateInterval);
+  });
+  
+  container.addEventListener('mouseleave', () => {
+    startAutoRotate();
+  });
 });
 </script>
 
