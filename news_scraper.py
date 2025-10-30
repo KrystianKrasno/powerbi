@@ -70,7 +70,7 @@ def fetch_article_details(url):
         print(f"Warning: Failed to fetch details from {url}: {e}")
         return "", ""
 
-def extract_release_links_by_date(soup, limit=2):
+def extract_release_links_by_date(soup, limit=5):
     """Finds the top n release links based on date nodes."""
     results = []
     seen = set()
