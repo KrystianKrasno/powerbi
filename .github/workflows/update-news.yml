@@ -1,6 +1,6 @@
 name: Update Toyota News
 
-# Trigger manually or on schedule (9 UTC daily)
+# Trigger daily at 9 UTC and allow manual runs
 on:
   schedule:
     - cron: "0 9 * * *"
@@ -11,9 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repo
+      # 1. Checkout repository and persist credentials
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # important for pushing
 
       # 2. Set up Python
       - name: Set up Python 3.11
@@ -29,11 +31,15 @@ jobs:
       - name: Run Toyota news scraper
         run: python powerbi/news_scraper.py
 
-      # 5. Commit updated JSON if changed
+      # 5. Commit and push updated JSON only if changed
       - name: Commit and push updated JSON
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
           git add powerbi/toyota_news.json
-          git diff --cached --quiet || git commit -m "Auto update Toyota news JSON"
-          git push
+          # Commit only if there are changes
+          git diff-index --quiet HEAD || git commit -m "Auto update Toyota news JSON"
+          # Push to the default branch
+          git push origin HEAD:main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
