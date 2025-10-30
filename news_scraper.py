@@ -3,6 +3,9 @@ from bs4 import BeautifulSoup, NavigableString
 from datetime import datetime
 import json
 import re
+import sys
+import traceback
+import os
 
 BASE_URL = "https://media.toyota.ca"
 LIST_URL = f"{BASE_URL}/en/corporateinewsrelease.html"
@@ -27,7 +30,7 @@ def norm_url(href):
 def fetch_article_details(url):
     """Extracts image and description from article detail page."""
     try:
-        r = requests.get(url, timeout=12, headers=HEADERS)
+        r = requests.get(url, timeout=15, headers=HEADERS)
         r.raise_for_status()
         soup = BeautifulSoup(r.text, "html.parser")
 
@@ -63,7 +66,8 @@ def fetch_article_details(url):
                     desc = txt
                     break
         return img_url or "", desc or ""
-    except Exception:
+    except Exception as e:
+        print(f"Warning: Failed to fetch details from {url}: {e}")
         return "", ""
 
 def extract_release_links_by_date(soup, limit=2):
@@ -71,6 +75,8 @@ def extract_release_links_by_date(soup, limit=2):
     results = []
     seen = set()
     text_nodes = soup.find_all(string=DATE_RE)
+
+    print(f"Found {len(text_nodes)} date nodes")
 
     for node in text_nodes:
         date_text = DATE_RE.search(node).group(0).strip()
@@ -105,6 +111,7 @@ def extract_release_links_by_date(soup, limit=2):
             if not title or len(title) < 8:
                 continue
             seen.add(full)
+            print(f"Found article: {date_text} - {title[:50]}...")
             results.append((date_text, title, full))
             if len(results) >= limit:
                 break
@@ -112,13 +119,21 @@ def extract_release_links_by_date(soup, limit=2):
 
 def fetch_toyota_news(limit=2):
     """Scrapes Toyota Media Site and returns JSON-ready dict."""
-    r = requests.get(LIST_URL, timeout=12, headers=HEADERS)
+    print(f"Fetching news from {LIST_URL}")
+    r = requests.get(LIST_URL, timeout=15, headers=HEADERS)
     r.raise_for_status()
+    print(f"Status code: {r.status_code}")
+    
     soup = BeautifulSoup(r.text, "html.parser")
 
     date_links = extract_release_links_by_date(soup, limit)
+    
+    if not date_links:
+        print("WARNING: No articles found on the page")
+    
     items = []
     for date_text, title, url in date_links:
+        print(f"Fetching details for: {url}")
         img_url, desc = fetch_article_details(url)
         items.append({
             "date": date_text,
@@ -127,23 +142,43 @@ def fetch_toyota_news(limit=2):
             "image_url": img_url,
             "url": url
         })
+    
     return {
         "source": "Toyota Canada Media",
         "fetched_at": datetime.utcnow().isoformat(),
         "articles": items
     }
 
-if __name__ == "__main__":
-    import sys
-    import traceback
+def main():
     try:
+        print("Starting Toyota news scraper...")
         news_data = fetch_toyota_news(limit=2)
-        import os
+        
+        # Create directory if it doesn't exist
         os.makedirs("powerbi", exist_ok=True)
-        with open("powerbi/toyota_news.json", "w", encoding="utf-8") as f:
-            import json
+        
+        # Write JSON file
+        output_path = "powerbi/toyota_news.json"
+        with open(output_path, "w", encoding="utf-8") as f:
             json.dump(news_data, f, ensure_ascii=False, indent=2)
-        print("toyota_news.json generated successfully.")
-    except Exception:
+        
+        print(f"✓ Successfully wrote {len(news_data['articles'])} articles to {output_path}")
+        
+        # Exit with success even if no articles found (to avoid breaking the workflow)
+        if len(news_data['articles']) == 0:
+            print("WARNING: No articles were scraped, but JSON file was created")
+            sys.exit(0)
+        
+        sys.exit(0)
+        
+    except requests.exceptions.RequestException as e:
+        print(f"ERROR: Network request failed: {e}")
         traceback.print_exc()
         sys.exit(2)
+    except Exception as e:
+        print(f"ERROR: Unexpected error: {e}")
+        traceback.print_exc()
+        sys.exit(2)
+
+if __name__ == "__main__":
+    main()
