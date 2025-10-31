@@ -152,10 +152,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // Show controls if more than one article
-      if (articles.length > 1) {
-        controls.style.display = 'flex';
-        startAutoRotate();
-      }
+    //   if (articles.length > 1) {
+    //     controls.style.display = 'flex';
+    startAutoRotate();
     })
     .catch(err => {
       console.error('Failed to load articles:', err);
