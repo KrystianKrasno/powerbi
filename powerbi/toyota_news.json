@@ -1,5 +1,41 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2025-10-30T20:24:44.593516",
-  "articles": []
+  "fetched_at": "2025-10-30T20:30:00.203956+00:00",
+  "articles": [
+    {
+      "date": "OCT 30, 2025",
+      "title": "Toyota Group Previews Future Products and Brand Direction at 2025 Japan Mobility Show",
+      "description": "TORONTO, October 29, 2025 – On Tuesday, the Toyota Group unveiled a number of new concepts, models, and brand directions at the 2025 Japan Mobility Show. New product offerings were on display showcasing the future strategies and innovations for the automaker’s various marques and nameplates. With highlights featuring Lexus’ “Discover” ecosystem and messaging, the expansion of the Century nameplate into a standalone brand, and various other vehicle mobility products and vehicles from the likes of Toyota and Daihatsu, the Toyota Group continues to advance mobility for all and complement the life",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/jms_toyota_11_s?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2025/toyota-group-previews-future-products-and-brand-direction-at-202.html"
+    },
+    {
+      "date": "OCT 22, 2025",
+      "title": "2026 Toyota bZ goes on sale with upgraded convenience features, expanded charging network options for all Toyota BEV drivers",
+      "description": "TORONTO, October 22, 2025 – Toyota Canada Inc. (TCI) is announcing several initiatives that aim to benefit 2026 Toyota bZ battery electric vehicle (BEV) drivers as the vehicle begins arriving at dealers starting later this month. In addition to a host of performance and range improvements, bZ drivers will also be able to enjoy access to an expanded network of DC fast chargers, including the Tesla Supercharger Network, new Plug & Charge capability, intelligent Apple Maps EV Routing and the introduction of Wallet.",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2026_Toyota_bZ_Charging?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2025/2026-toyota-bz-goes-on-sale-with-upgraded-convenience-features--.html"
+    },
+    {
+      "date": "OCT 14, 2025",
+      "title": "The Latest Evolution of Toyota’s Multimedia Coming to a Screen Near You",
+      "description": "Toronto, October 14, 2025 – Toyota is setting a new standard for in-car technology with an enhanced version of the Toyota Multimedia system. It will make its debut in North America’s best-selling compact SUV, the all-new 2026 RAV4, arriving at dealerships early next year, before rolling out to future models in the Toyota lineup.",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Toyota Multimedia_ Home Screen 3 Widgets. EN?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2025/the-latest-evolution-of-toyota-s-multimedia-coming-to-a-screen-n.html"
+    },
+    {
+      "date": "OCT 07, 2025",
+      "title": "Toyota Canada Receives Seven Awards, including Overall Brand Award – 2025 Canadian Black Book Best Retained Value Awards",
+      "description": "TORONTO, October 7, 2025 – Toyota Canada has been recognized by Canadian Black Book (CBB) with seven Best Retained Value Awards for 2025.",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2020_Corolla_XSE_Red-1?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2025/toyota-canada-receives-seven-awards--including-overall-brand-awa.html"
+    },
+    {
+      "date": "OCT 06, 2025",
+      "title": "Toyota Canada Partners with Canadian Red Cross to Strengthen  Domestic Response Capacity Through Time to Act",
+      "description": "$100,000 contribution will help grow readiness and recovery to support Canadians",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/CanadianRedCross-ForestFire-Toyota?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2025/toyota-canada-partners-with-canadian-red-cross-to-strengthen--do.html"
+    }
+  ]
 }

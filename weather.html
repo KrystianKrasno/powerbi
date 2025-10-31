@@ -101,7 +101,7 @@ body {
   left: 6px;
   background: rgba(0,0,0,0.5);
   color: #fff;
-  padding: 3px 6px;
+  padding: 6px 6px;
   border-radius: 4px;
   font-size: 14px;
   z-index: 999;
@@ -252,7 +252,7 @@ async function initializeRadarMap(location) {
 
     let frameIndex = 0;
     const fadeDuration = 500;  // ms fade transition
-    const frameInterval = 700; // shorter delay per frame for smoother effect
+    const frameInterval = 1000; //  delay per frame for smoother effect
 
     const timeOptions = {
       hour: "2-digit",
