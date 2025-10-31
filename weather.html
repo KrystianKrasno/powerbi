@@ -22,14 +22,14 @@ body {
   margin-top: 1px;
   background: transparent;
   border-radius: 20px;
-  padding: 10px 15px 15px 15px;
+  padding: 5px 5px 5px 5px;
 }
 
 .main-layout {
   display: grid;
   grid-template-columns: 1fr 600px;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 1px;
+  margin-bottom: 1px;
 }
 
 .left-section {
@@ -62,7 +62,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 1px;
 }
 
 .today-icon {
@@ -80,14 +80,14 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0px;
 }
 
 .detail-row {
   display: flex;
   align-items: center;
   font-size: 18px;
-  padding: 8px 0;
+  padding: 2px 0;
   border-bottom: 1px solid #f0f0f0;
 }
 
@@ -105,7 +105,7 @@ body {
 .forecast-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 1px;
 }
 
 .day-card {
@@ -124,49 +124,49 @@ body {
 .day-date {
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .day-icon {
   width: 70px;
   height: 70px;
-  margin: 8px auto;
+  margin: 4px auto;
 }
 
 .day-temp {
   font-size: 20px;
   font-weight: 600;
-  margin: 8px 0;
+  margin: 4px 0;
 }
 
 .day-desc {
   font-size: 14px;
   color: #555;
-  margin: 6px 0;
+  margin: 2px 0;
 }
 
 .day-precip {
   font-size: 14px;
   color: #444;
-  margin-top: 6px;
+  margin-top: 2px;
 }
 
 /* Radar map - standalone tile */
 .radar-section {
   background: #fff;
-  border-radius: 10px;
-  padding: 15px;
+  border-radius: 1px;
+  padding: 1px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
 }
 
-.radar-header {
+/* .radar-header {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
   color: #333;
-}
+} */
 
 .radar-map {
   flex: 1;
@@ -212,7 +212,6 @@ body {
     </div>
     
     <div class="radar-section">
-      <div class="radar-header">Weather Radar</div>
       <div id="radar-map" class="radar-map">
         <div id="radar-time-label">Loading radar...</div>
       </div>
