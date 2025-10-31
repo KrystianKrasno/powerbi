@@ -21,40 +21,40 @@ body {
   max-width: 1200px;
   margin-top: 1px;
   background: transparent;
-  border-radius: 20px;
-  padding: 5px 5px 5px 5px;
+  border-radius: 10px;
+  padding: 2px;
 }
 
 .main-layout {
   display: grid;
-  grid-template-columns: 1fr 600px;
-  gap: 1px;
+  grid-template-columns: 1fr 800px; /* smaller radar width */
+  gap: 2px;
   margin-bottom: 1px;
 }
 
 .left-section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 
 .today {
   background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .city-name {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #333;
 }
 
 .today-content {
   display: flex;
-  gap: 30px;
+  gap: 10px;
   align-items: center;
 }
 
@@ -62,16 +62,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1px;
+  gap: 2px;
 }
 
 .today-icon {
-  width: 120px;
-  height: 120px;
+  width: 60px;
+  height: 60px;
 }
 
 .today-temp {
-  font-size: 48px;
+  font-size: 28px;
   font-weight: 700;
   color: #333;
 }
@@ -80,21 +80,21 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0px;
+  gap: 2px;
 }
 
 .detail-row {
   display: flex;
   align-items: center;
-  font-size: 18px;
-  padding: 2px 0;
+  font-size: 12px;
+  padding: 1px 0;
   border-bottom: 1px solid #f0f0f0;
 }
 
 .detail-label {
   font-weight: 600;
   color: #666;
-  min-width: 140px;
+  min-width: 100px;
 }
 
 .detail-value {
@@ -105,88 +105,76 @@ body {
 .forecast-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
+  gap: 2px;
 }
 
 .day-card {
   background: #fff;
-  border-radius: 10px;
-  padding: 15px 10px;
+  border-radius: 6px;
+  padding: 6px 4px;
   text-align: center;
-  transition: transform 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.day-card:hover {
-  transform: translateY(-8px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .day-date {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 600;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
 }
 
 .day-icon {
-  width: 70px;
-  height: 70px;
+  width: 40px;
+  height: 40px;
   margin: 1px;
 }
 
 .day-temp {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 4px 0;
-}
-
-.day-desc {
   font-size: 14px;
-  color: #555;
+  font-weight: 600;
   margin: 2px 0;
 }
 
-.day-precip {
-  font-size: 14px;
-  color: #444;
-  margin-top: 2px;
+.day-desc {
+  font-size: 12px;
+  color: #555;
+  margin: 1px 0;
 }
 
-/* Radar map - standalone tile */
+.day-precip {
+  font-size: 12px;
+  color: #444;
+  margin-top: 1px;
+}
+
+/* Radar map */
 .radar-section {
   background: #fff;
-  border-radius: 1px;
-  padding: 1px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  padding: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
 }
 
-/* .radar-header {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: #333;
-} */
-
 .radar-map {
   flex: 1;
-  height: 400px;
+  height: 250px; /* reduce height from 400px */
   width: 100%;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 0 8px rgba(0,0,0,0.15);
+  box-shadow: 0 0 4px rgba(0,0,0,0.15);
   position: relative;
 }
 
 #radar-time-label {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 5px;
+  left: 5px;
   background: rgba(0,0,0,0.7);
   color: #fff;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 16px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 12px;
   z-index: 999;
   font-weight: 500;
 }
@@ -195,9 +183,8 @@ body {
   .main-layout {
     grid-template-columns: 1fr;
   }
-  
   .radar-map {
-    height: 400px;
+    height: 250px;
   }
 }
 </style>
