@@ -8,14 +8,14 @@
   body { font-family: sans-serif; margin:0; padding:0; background:#fff; }
   .header { background-color:#EB0A1E; color:white; padding:20px 20px; display:flex; justify-content:space-between; align-items:center; }
   .header h1 { margin:0; font-size:28px; }
-  .article-container { padding:30px 40px; position:relative; min-height:300px; }
+  .article-container { padding:30px 40px; position:relative;}
   .article { 
     display:flex; 
-    margin-bottom:40px; 
+    margin-bottom:2px; 
     border-bottom:1px solid #e0e0e0; 
-    padding-bottom:20px;
+    padding-bottom:5px;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 1s ease-in-out;
     position: absolute;
     width: calc(100% - 80px);
     top: 30px;
@@ -25,12 +25,12 @@
     position: relative;
   }
   .article-content { flex:1; }
-  .article-date { font-size:14px; color:#666666; margin-bottom:6px; }
-  .article-title { font-size:20px; color:#EB0A1E; font-weight:700; margin:0 0 24px 0; }
+  .article-date { font-size:18px; color:#666666; margin-bottom:6px; }
+  .article-title { font-size:20px; color:#2049a1; font-weight:700; margin:0 0 12px 0; }
   .article-title a { color:inherit; text-decoration:none; }
   .article-title a:hover { text-decoration:underline; }
-  .article-desc { font-size:16px; color:#333333; line-height:1.5; }
-  .article img { width:160px; height:auto; margin-left:20px; object-fit:cover; }
+  .article-desc { font-size:20px; font-weight: bold; color:#000000; line-height:1.5; }
+  .article img { width:160px; height:auto; margin-left:10px; object-fit:cover; }
   .carousel-controls {
     display: flex;
     justify-content: center;
@@ -152,9 +152,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // Show controls if more than one article
-    //   if (articles.length > 1) {
-    //     controls.style.display = 'flex';
-    startAutoRotate();
+      if (articles.length > 1) {
+        controls.style.display = 'flex';
+        startAutoRotate();
+      }
     })
     .catch(err => {
       console.error('Failed to load articles:', err);
@@ -193,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function startAutoRotate() {
-    autoRotateInterval = setInterval(nextSlide, 8500); // Rotate every 5 seconds
+    autoRotateInterval = setInterval(nextSlide, 5000); // Rotate every 5 seconds
   }
 
   function resetAutoRotate() {
