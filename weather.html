@@ -68,6 +68,7 @@ body {
 .today-icon {
   width: 60px;
   height: 60px;
+  animation: float 3s ease-in-out infinite alternate;
 }
 
 .today-temp {
@@ -127,6 +128,7 @@ body {
   width: 40px;
   height: 40px;
   margin: 1px;
+  animation: float 3s ease-in-out infinite alternate;
 }
 
 .day-temp {
@@ -179,6 +181,16 @@ body {
   z-index: 999;
   font-weight: 500;
 }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+  }
 
 @media (max-width: 1024px) {
   .main-layout {
