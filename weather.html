@@ -7,68 +7,74 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: transparent;
+  background: #f5f5f5;
+  overflow: hidden;
+  height: 462px;
+  width: 1268px;
 }
 
 .forecast-container {
-  width: 95%;
-  max-width: 1200px;
-  margin-top: 1px;
-  background: transparent;
-  border-radius: 10px;
-  padding: 2px;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
 }
 
 .main-layout {
   display: grid;
-  grid-template-columns: 1fr 725px; /* smaller radar width */
-  gap: 2px;
-  margin-bottom: 1px;
+  grid-template-columns: 380px 1fr;
+  gap: 8px;
+  height: 100%;
 }
 
 .left-section {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  height: 100%;
 }
 
 .today {
   background: #fff;
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  padding: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  flex: 1;
+  min-height: 0;
 }
 
 .city-name {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: #333;
 }
 
 .today-content {
   display: flex;
-  gap: 10px;
-  align-items: center;
+  gap: 16px;
+  align-items: flex-start;
+  height: calc(100% - 30px);
 }
 
 .today-icon-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
+  min-width: 90px;
 }
 
 .today-icon {
-  width: 80px;
-  height: 80px;
-  margin-left: 40px;
+  width: 70px;
+  height: 70px;
   animation: float 3s ease-in-out infinite alternate;
 }
 
@@ -76,132 +82,124 @@ body {
   font-size: 28px;
   font-weight: 700;
   color: #333;
-  margin-left: 40px;
 }
 
 .today-details {
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin-left: 60px;
-  gap: 2px;
+  gap: 3px;
+  min-width: 0;
 }
 
 .detail-row {
   display: flex;
   align-items: center;
-  font-size: 16px;
-  padding: 1px 0;
+  font-size: 20px;
+  padding: 3px 0;
   border-bottom: 1px solid #f0f0f0;
 }
 
 .detail-label {
   font-weight: 600;
   color: #666;
-  min-width: 100px;
+  min-width: 90px;
+  flex-shrink: 0;
 }
 
 .detail-value {
   color: #333;
-  font-weight: 500;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .forecast-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
+  height: 190px;
 }
 
 .day-card {
   background: #fff;
   border-radius: 6px;
-  padding: 6px 4px;
+  padding: 10px 6px;
   text-align: center;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .day-date {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 600;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+  color: #333;
 }
 
 .day-icon {
-  width: 40px;
-  height: 40px;
-  margin: 1px;
+  width: 50px;
+  height: 50px;
+  margin: 6px auto;
   animation: float 3s ease-in-out infinite alternate;
 }
 
 .day-temp {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
-  margin: 2px 0;
+  margin: 4px 0;
+  color: #333;
 }
 
 .day-desc {
-  font-size: 14px;
+  font-size: 16px;
   color: #555;
-  margin: 1px 0;
+  margin: 3px 0;
 }
 
 .day-precip {
-  font-size: 14px;
+  font-size: 16px;
   color: #444;
-  margin-top: 1px;
+  margin-top: 3px;
+  font-weight: 500;
 }
 
-/* Radar map */
 .radar-section {
   background: #fff;
   border-radius: 6px;
-  padding: 2px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .radar-map {
   flex: 1;
-  height: 550px; /* reduce height from 400px */
   width: 100%;
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 0 4px rgba(0,0,0,0.15);
   position: relative;
+  min-height: 0;
 }
 
 #radar-time-label {
   position: absolute;
-  top: 5px;
-  left: 5px;
-  background: rgba(0,0,0,0.7);
+  top: 8px;
+  left: 8px;
+  background: rgba(0,0,0,0.75);
   color: #fff;
-  padding: 4px 6px;
+  padding: 6px 10px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 14px;
   z-index: 999;
   font-weight: 500;
 }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes float {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-5px); }
-  }
-
-@media (max-width: 1024px) {
-  .main-layout {
-    grid-template-columns: 1fr;
-  }
-  .radar-map {
-    height: 550px;
-  }
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
 }
 </style>
 </head>
@@ -266,7 +264,7 @@ function renderTodayUI(today, current, locationName) {
         </div>
         <div class="detail-row">
           <span class="detail-label">Precipitation:</span>
-          <span class="detail-value">${today.day.totalprecip_mm.toFixed(1)} mm (${today.day.daily_chance_of_rain}% chance)</span>
+          <span class="detail-value">${today.day.totalprecip_mm.toFixed(1)} mm (${today.day.daily_chance_of_rain}%)</span>
         </div>
         <div class="detail-row">
           <span class="detail-label">Humidity:</span>
