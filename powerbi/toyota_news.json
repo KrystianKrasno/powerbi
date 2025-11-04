@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2025-11-03T16:14:23.851901+00:00",
+  "fetched_at": "2025-11-04T09:27:30.277912+00:00",
   "articles": [
+    {
+      "date": "NOV 03, 2025",
+      "title": "Toyota Canada Releases October Sales Results",
+      "description": "TORONTO, November 3, 2025 – Toyota Canada Inc. (TCI) October sales were up 14.6% YOY with 22,689 units sold, helped by strong demand for its electrified vehicles.",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2024_Toyota_GrandHighlander_Limited_WindChillPearl-Logo?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2025/toyota-canada-releases-october-sales-results.html"
+    },
     {
       "date": "OCT 30, 2025",
       "title": "Toyota Group Previews Future Products and Brand Direction at 2025 Japan Mobility Show",
@@ -29,13 +36,6 @@
       "description": "TORONTO, October 7, 2025 – Toyota Canada has been recognized by Canadian Black Book (CBB) with seven Best Retained Value Awards for 2025.",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2020_Corolla_XSE_Red-1?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2025/toyota-canada-receives-seven-awards--including-overall-brand-awa.html"
-    },
-    {
-      "date": "OCT 06, 2025",
-      "title": "Toyota Canada Partners with Canadian Red Cross to Strengthen  Domestic Response Capacity Through Time to Act",
-      "description": "$100,000 contribution will help grow readiness and recovery to support Canadians",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/CanadianRedCross-ForestFire-Toyota?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2025/toyota-canada-partners-with-canadian-red-cross-to-strengthen--do.html"
     }
   ]
 }
