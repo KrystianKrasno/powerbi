@@ -6,74 +6,46 @@
 <title>Toyota Canada News</title>
 <style>
   body { font-family: "Segoe UI"; margin:0; padding:0; background:#fff; }
-  .header { 
-    background-color:#978080; 
-    color:rgb(0, 0, 0); 
-    padding:40px 40px; /* DOUBLED: was 20px 20px */
-    display:flex; 
-    justify-content:space-between; 
-    align-items:center; 
-  }
-  .header h1 { margin:0; font-size:56px; } /* DOUBLED: was 28px */
-  .article-container { 
-    padding:40px 40px; /* DOUBLED: was 20px 20px */
-    position:relative;
-  }
+  .header { background-color:#978080; color:rgb(0, 0, 0); padding:20px 20px; display:flex; justify-content:space-between; align-items:center; }
+  .header h1 { margin:0; font-size:28px; }
+  .article-container { padding:20px 20px; position:relative;}
   .article { 
     display:flex; 
-    margin-bottom:4px; /* DOUBLED: was 2px */
-    border-bottom:2px solid #e0e0e0; /* DOUBLED: was 1px */
-    padding-bottom:2px; /* DOUBLED: was 1px */
+    margin-bottom:2px; 
+    border-bottom:1px solid #e0e0e0; 
+    padding-bottom:1px;
     opacity: 0;
     transition: opacity 1s ease-in-out;
     position: absolute;
-    width: calc(100% - 160px); /* DOUBLED: was 80px */
-    top: 20px; /* DOUBLED: was 10px */
+    width: calc(100% - 80px);
+    top: 10px;
   }
   .article.active {
     opacity: 1;
     position: relative;
   }
   .article-content { flex:1; }
-  .article-date { 
-    font-size:36px; /* DOUBLED: was 18px */
-    color:#666666; 
-    margin-bottom:12px; /* DOUBLED: was 6px */
-  }
-  .article-title { 
-    font-size:48px; /* DOUBLED: was 24px */
-    color:#020c20; 
-    font-weight:700; 
-    margin:24px 24px 24px 24px; /* DOUBLED: was 12px 12px 12px 12px */
-  }
+  .article-date { font-size:18px; color:#666666; margin-bottom:6px; }
+  .article-title { font-size:24px; color:#020c20; font-weight:700; margin:0 0 12px 0; }
   .article-title a { color:inherit; text-decoration:none; }
   .article-title a:hover { text-decoration:underline; }
-  .article-desc { 
-    font-size:40px; /* DOUBLED: was 20px */
-    color:#000000; 
-    line-height:1.5; 
-  }
-  .article img { 
-    width:320px; /* DOUBLED: was 160px */
-    height:auto; 
-    margin-left:20px; /* DOUBLED: was 10px */
-    object-fit:cover; 
-  }
+  .article-desc { font-size:20px; color:#000000; line-height:1.5; }
+  .article img { width:160px; height:auto; margin-left:10px; object-fit:cover; }
   .carousel-controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px; /* DOUBLED: was 15px */
-    margin-top: 4px; /* DOUBLED: was 2px */
-    padding-bottom: 20px; /* DOUBLED: was 10px */
+    gap: 15px;
+    margin-top: 2px;
+    padding-bottom: 10px;
   }
   .carousel-dots {
     display: flex;
-    gap: 16px; /* DOUBLED: was 8px */
+    gap: 8px;
   }
   .dot {
-    width: 20px; /* DOUBLED: was 10px */
-    height: 20px; /* DOUBLED: was 10px */
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: #ccc;
     cursor: pointer;
@@ -86,11 +58,11 @@
     background: #EB0A1E;
     color: white;
     border: none;
-    width: 64px; /* DOUBLED: was 32px */
-    height: 64px; /* DOUBLED: was 32px */
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 32px; /* DOUBLED: was 16px */
+    font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,19 +71,8 @@
   .carousel-btn:hover {
     background: #c00918;
   }
-  .no-articles { 
-    font-size:36px; /* DOUBLED: was 18px */
-    color:#999; 
-    text-align:center; 
-    margin-top:80px; /* DOUBLED: was 40px */
-  }
-  .error-details { 
-    font-size:28px; /* DOUBLED: was 14px */
-    color:#666; 
-    text-align:center; 
-    margin-top:20px; /* DOUBLED: was 10px */
-    font-family:monospace; 
-  }
+  .no-articles { font-size:18px; color:#999; text-align:center; margin-top:40px; }
+  .error-details { font-size:14px; color:#666; text-align:center; margin-top:10px; font-family:monospace; }
 </style>
 </head>
 <body>

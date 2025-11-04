@@ -17,98 +17,98 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: #f5f5f5;
   overflow: hidden;
-  height: 920px; /* DOUBLED: was 460px */
-  width: 2536px; /* DOUBLED: was 1268px */
+  height: 460px;
+  width: 1268px;
 }
 
 .forecast-container {
   width: 100%;
   height: 100%;
-  padding: 4px; /* DOUBLED: was 2px */
+  padding: 2px;
 }
 
 .main-layout {
   display: grid;
-  grid-template-columns: 1200px 1fr; /* DOUBLED: was 600px */
-  gap: 16px; /* DOUBLED: was 8px */
+  grid-template-columns: 500px 1fr;
+  gap: 8px;
   height: 100%;
 }
 
 .left-section {
   display: flex;
   flex-direction: column;
-  gap: 16px; /* DOUBLED: was 8px */
+  gap: 8px;
   height: 100%;
 }
 
 .today {
   background: #fff;
-  border-radius: 12px; /* DOUBLED: was 6px */
-  padding: 4px; /* DOUBLED: was 2px */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08); /* DOUBLED: was 0 2px 4px */
+  border-radius: 6px;
+  padding: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
   flex: 1;
   min-height: 0;
 }
 
 .city-name {
-  font-size: 48px; /* DOUBLED: was 24px */
+  font-size: 24px;
   font-weight: 700;
-  margin-bottom: 8px; /* DOUBLED: was 4px */
+  margin-bottom: 4px;
   color: #333;
 }
 
 .today-content {
   display: flex;
-  gap: 40px; /* DOUBLED: was 20px */
+  gap: 20px;
   align-items: flex-start;
-  height: calc(100% - 60px); /* DOUBLED: was 30px */
+  height: calc(100% - 30px);
 }
 
 .today-icon-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px; /* DOUBLED: was 4px */
-  min-width: 180px; /* DOUBLED: was 90px */
+  gap: 4px;
+  min-width: 90px;
 }
 
 .today-icon {
-  width: 140px; /* DOUBLED: was 70px */
-  height: 140px; /* DOUBLED: was 70px */
-  margin-left: 80px; /* DOUBLED: was 40px */
-  margin-top: 80px; /* DOUBLED: was 40px */
+  width: 70px;
+  height: 70px;
+  margin-left: 40px;
+  margin-top: 40px;
   animation: float 3s ease-in-out infinite alternate;
 }
 
 .today-temp {
-  font-size: 56px; /* DOUBLED: was 28px */
+  font-size: 28px;
   font-weight: 700;
   color: #333;
-  margin-left: 80px; /* DOUBLED: was 40px */
+  margin-left: 40px;
 }
 
 .today-details {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px; /* DOUBLED: was 3px */
+  gap: 3px;
   min-width: 0;
-  margin-left: 120px; /* DOUBLED: was 60px */
+  margin-left: 60px;
 }
 
 .detail-row {
   display: flex;
   align-items: center;
-  font-size: 36px; /* DOUBLED: was 18px */
-  padding: 4px; /* DOUBLED: was 2px */
-  border-bottom: 2px solid #f0f0f0; /* DOUBLED: was 1px */
-  gap: 40px; /* DOUBLED: was 20px */
+  font-size: 18px;
+  padding: 2px ;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 20px;
 }
 
 .detail-label {
   font-weight: 600;
   color: #666;
-  min-width: 180px; /* DOUBLED: was 90px */
+  min-width: 90px;
   flex-shrink: 0;
 }
 
@@ -120,61 +120,60 @@ body {
 .forecast-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px; /* DOUBLED: was 1px */
-  height: 380px; /* DOUBLED: was 190px */
-  margin-bottom: 20px;
+  gap: 1px;
+  height: 190px;
 }
 
 .day-card {
   background: #fff;
-  border-radius: 12px; /* DOUBLED: was 6px */
-  padding: 20px 12px; /* DOUBLED: was 10px 6px */
+  border-radius: 6px;
+  padding: 10px 6px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08); /* DOUBLED: was 0 2px 4px */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .day-date {
-  font-size: 32px; /* DOUBLED: was 16px */
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 8px; /* DOUBLED: was 4px */
+  margin-bottom: 4px;
   color: #333;
 }
 
 .day-icon {
-  width: 120px; /* DOUBLED: was 60px */
-  height: 120px; /* DOUBLED: was 60px */
-  margin: 4px auto; /* DOUBLED: was 2px */
+  width: 60px;
+  height: 60px;
+  margin: 2px auto;
   animation: float 3s ease-in-out infinite alternate;
 }
 
 .day-temp {
-  font-size: 36px; /* DOUBLED: was 18px */
+  font-size: 18px;
   font-weight: 600;
-  margin: 8px 0; /* DOUBLED: was 4px */
+  margin: 4px 0;
   color: #333;
 }
 
 .day-desc {
-  font-size: 32px; /* DOUBLED: was 16px */
+  font-size: 16px;
   color: #555;
-  margin: 6px 0; /* DOUBLED: was 3px */
+  margin: 3px 0;
 }
 
 .day-precip {
-  font-size: 32px; /* DOUBLED: was 16px */
+  font-size: 16px;
   color: #444;
-  margin-top: 6px; /* DOUBLED: was 3px */
+  margin-top: 3px;
   font-weight: 500;
 }
 
 .radar-section {
   background: #fff;
-  border-radius: 12px; /* DOUBLED: was 6px */
-  padding: 16px; /* DOUBLED: was 8px */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08); /* DOUBLED: was 0 2px 4px */
+  border-radius: 6px;
+  padding: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -183,29 +182,29 @@ body {
 .radar-map {
   flex: 1;
   width: 100%;
-  border-radius: 12px; /* DOUBLED: was 6px */
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 0 8px rgba(0,0,0,0.15); /* DOUBLED: was 0 0 4px */
+  box-shadow: 0 0 4px rgba(0,0,0,0.15);
   position: relative;
   min-height: 0;
 }
 
 #radar-time-label {
   position: absolute;
-  top: 16px; /* DOUBLED: was 8px */
-  left: 16px; /* DOUBLED: was 8px */
+  top: 8px;
+  left: 8px;
   background: rgba(0,0,0,0.75);
   color: #fff;
-  padding: 12px 20px; /* DOUBLED: was 6px 10px */
-  border-radius: 8px; /* DOUBLED: was 4px */
-  font-size: 28px; /* DOUBLED: was 14px */
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
   z-index: 999;
   font-weight: 500;
 }
 
 @keyframes float {
   0% { transform: translateY(0); }
-  100% { transform: translateY(-8px); } /* DOUBLED: was -4px */
+  100% { transform: translateY(-4px); }
 }
 </style>
 </head>
