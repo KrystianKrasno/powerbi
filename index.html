@@ -6,7 +6,7 @@
 <title>Toyota Canada News</title>
 <style>
   body { font-family: "Segoe UI"; margin:0; padding:0; background:#fff; }
-  .header { background-color:#978080; color:rgb(0, 0, 0); padding:20px 20px; display:flex; justify-content:space-between; align-items:center; }
+  .header { background-color:#913E3E; color:rgb(0, 0, 0); padding:20px 20px; display:flex; justify-content:space-between; align-items:center; }
   .header h1 { margin:0; font-size:28px; }
   .article-container { padding:20px 20px; position:relative;}
   .article { 
@@ -26,10 +26,10 @@
   }
   .article-content { flex:1; }
   .article-date { font-size:18px; color:#666666; margin-bottom:6px; }
-  .article-title { font-size:24px; color:#020c20; font-weight:700; margin:0 0 12px 0; }
+  .article-title { font-size:30px; color:#020c20; font-weight:700; margin:0 0 12px 0; }
   .article-title a { color:inherit; text-decoration:none; }
   .article-title a:hover { text-decoration:underline; }
-  .article-desc { font-size:20px; color:#000000; line-height:1.5; }
+  .article-desc { font-size:24px; color:#000000; line-height:1.5; }
   .article img { width:160px; height:auto; margin-left:10px; object-fit:cover; }
   .carousel-controls {
     display: flex;
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function startAutoRotate() {
-    autoRotateInterval = setInterval(nextSlide, 5000); // Rotate every 5 seconds
+    autoRotateInterval = setInterval(nextSlide, 10000); // Rotate every 5 seconds
   }
 
   function resetAutoRotate() {
