@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-01-05T09:38:08.426708+00:00",
+  "fetched_at": "2026-01-06T09:31:52.253157+00:00",
   "articles": [
+    {
+      "date": "JAN 05, 2026",
+      "title": "Record electrified vehicle sales power Toyota Canada Inc. to record sales in 2025",
+      "description": "RAV4 continues to be Canada’s best-selling passenger vehicle",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2024_Land Cruiser_HeritageBlue_025-Toyota Logo?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/record-electrified-vehicle-sales-power-toyota-canada-inc--to-rec.html"
+    },
     {
       "date": "DEC 02, 2025",
       "title": "Toyota Canada Releases November Sales Results",
@@ -29,13 +36,6 @@
       "description": "TORONTO, October 22, 2025 – Toyota Canada Inc. (TCI) is announcing several initiatives that aim to benefit 2026 Toyota bZ battery electric vehicle (BEV) drivers as the vehicle begins arriving at dealers starting later this month. In addition to a host of performance and range improvements, bZ drivers will also be able to enjoy access to an expanded network of DC fast chargers, including the Tesla Supercharger Network, new Plug & Charge capability, intelligent Apple Maps EV Routing and the introduction of Wallet.",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2026_Toyota_bZ_Charging?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2025/2026-toyota-bz-goes-on-sale-with-upgraded-convenience-features--.html"
-    },
-    {
-      "date": "OCT 14, 2025",
-      "title": "The Latest Evolution of Toyota’s Multimedia Coming to a Screen Near You",
-      "description": "Toronto, October 14, 2025 – Toyota is setting a new standard for in-car technology with an enhanced version of the Toyota Multimedia system. It will make its debut in North America’s best-selling compact SUV, the all-new 2026 RAV4, arriving at dealerships early next year, before rolling out to future models in the Toyota lineup.",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Toyota Multimedia_ Home Screen 3 Widgets. EN?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2025/the-latest-evolution-of-toyota-s-multimedia-coming-to-a-screen-n.html"
     }
   ]
 }
