@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-02-03T09:50:50.514979+00:00",
+  "fetched_at": "2026-02-04T09:52:53.516271+00:00",
   "articles": [
+    {
+      "date": "FEB 03, 2026",
+      "title": "Toyota Canada Releases January Sales Results",
+      "description": "Numerous hybrid, plug-in hybrid and battery-electric nameplates set January records",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/MY23_GR_Corolla_Circuit_Heavy_Metal_92-ToyotaLogo-crop?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-january-sales-results.html"
+    },
     {
       "date": "JAN 23, 2026",
       "title": "Toyota starts Canadian production of the all-new 6th generation RAV4",
@@ -29,13 +36,6 @@
       "description": "TORONTO, November 3, 2025 – Toyota Canada Inc. (TCI) October sales were up 14.6% YOY with 22,689 units sold, helped by strong demand for its electrified vehicles.",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2024_Toyota_GrandHighlander_Limited_WindChillPearl-Logo?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2025/toyota-canada-releases-october-sales-results.html"
-    },
-    {
-      "date": "OCT 30, 2025",
-      "title": "Toyota Group Previews Future Products and Brand Direction at 2025 Japan Mobility Show",
-      "description": "TORONTO, October 29, 2025 – On Tuesday, the Toyota Group unveiled a number of new concepts, models, and brand directions at the 2025 Japan Mobility Show. New product offerings were on display showcasing the future strategies and innovations for the automaker’s various marques and nameplates. With highlights featuring Lexus’ “Discover” ecosystem and messaging, the expansion of the Century nameplate into a standalone brand, and various other vehicle mobility products and vehicles from the likes of Toyota and Daihatsu, the Toyota Group continues to advance mobility for all and complement the life",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/jms_toyota_11_s?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2025/toyota-group-previews-future-products-and-brand-direction-at-202.html"
     }
   ]
 }
