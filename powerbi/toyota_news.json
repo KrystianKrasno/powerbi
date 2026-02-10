@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-02-09T10:07:00.901058+00:00",
+  "fetched_at": "2026-02-10T10:03:36.732714+00:00",
   "articles": [
+    {
+      "date": "FEB 09, 2026",
+      "title": "Charged and Ready",
+      "description": "TORONTO, February 9, 2026 – Meet the all-new 2027 Highlander. Featuring sleek, modern lines, an electric powertrain, and a spacious three-row cabin with comfort for the whole crew.",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Highlander-All-Electric-2027?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/charged-and-ready.html"
+    },
     {
       "date": "FEB 04, 2026",
       "title": "Toyota Canada ‘gets together’ with Dallas Green (City and Colour) to launch the Canadian-Built all-new, all-hybrid 2026 RAV4",
@@ -29,13 +36,6 @@
       "description": "RAV4 continues to be Canada’s best-selling passenger vehicle",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2024_Land Cruiser_HeritageBlue_025-Toyota Logo?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/record-electrified-vehicle-sales-power-toyota-canada-inc--to-rec.html"
-    },
-    {
-      "date": "DEC 02, 2025",
-      "title": "Toyota Canada Releases November Sales Results",
-      "description": "TORONTO, December 2, 2025 – Toyota Canada Inc. (TCI) sales reached an all-time November record with 20,740 units sold, up 12.3% YOY, helped by strong demand for its electrified vehicles.",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2025_Toyota_Crown Signia_Limited_FinishLineRed_009-ToyotaLogo?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2025/toyota-canada-releases-november-sales-results.html"
     }
   ]
 }
