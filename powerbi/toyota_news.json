@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-02-11T09:58:09.685112+00:00",
+  "fetched_at": "2026-02-12T09:57:14.398042+00:00",
   "articles": [
+    {
+      "date": "FEB 12, 2026",
+      "title": "Toyota Canada CEO outlines company’s approach to “unprecedented uncertainty”",
+      "description": "Cyril Dimitris addresses industry stakeholders ahead of Canadian International Auto Show",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Toyota_Event-8?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-ceo-outlines-company-s-approach-to--unprecedented-.html"
+    },
     {
       "date": "FEB 09, 2026",
       "title": "Charged and Ready",
@@ -29,13 +36,6 @@
       "description": "WOODSTOCK, January 23, 2026 – Toyota Motor Manufacturing Canada (TMMC) has started producing the all-new 6th generation RAV4 for the North American market.",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/_SCA6028?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-starts-canadian-production-of-the-all-new-6th-generation-.html"
-    },
-    {
-      "date": "JAN 05, 2026",
-      "title": "Record electrified vehicle sales power Toyota Canada Inc. to record sales in 2025",
-      "description": "RAV4 continues to be Canada’s best-selling passenger vehicle",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2024_Land Cruiser_HeritageBlue_025-Toyota Logo?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/record-electrified-vehicle-sales-power-toyota-canada-inc--to-rec.html"
     }
   ]
 }
