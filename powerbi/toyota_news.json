@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-02-13T09:53:02.474713+00:00",
+  "fetched_at": "2026-02-14T09:36:57.321265+00:00",
   "articles": [
+    {
+      "date": "FEB 13, 2026",
+      "title": "Toyota honoured with multiple 2026 AutoTrader Awards and voted Canada’s most trusted automaker",
+      "description": "TORONTO, February 13, 2026 – Toyota Canada’s commitment to offering Canadians a full range of stylish, well-engineered vehicles that represent excellent value for money has earned the company seven 2026 AutoTrader Awards. AutoTrader announced the awards as part of the events at the 2026 Canadian International Auto Show in Toronto.",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2026_Toyota_RAV4_Woodland-15?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-honoured-with-multiple-2026-autotrader-awards-and-voted-c.html"
+    },
     {
       "date": "FEB 12, 2026",
       "title": "Toyota Canada recognized by Canadian Black Book with multiple 2026 Best Residual Value Awards, including both Overall Brand Awards",
@@ -29,13 +36,6 @@
       "description": "TORONTO, February 4, 2026 – Toyota Canada has just launched a new national campaign celebrating connection, recreation and the Canadian-built All-new, all-hybrid 2026 Toyota RAV4.",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/RAV4 Clip - Still1?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-canada--gets-together--with-dallas-green---city-and-colou.html"
-    },
-    {
-      "date": "FEB 03, 2026",
-      "title": "Toyota Canada Releases January Sales Results",
-      "description": "Numerous hybrid, plug-in hybrid and battery-electric nameplates set January records",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/MY23_GR_Corolla_Circuit_Heavy_Metal_92-ToyotaLogo-crop?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-january-sales-results.html"
     }
   ]
 }
