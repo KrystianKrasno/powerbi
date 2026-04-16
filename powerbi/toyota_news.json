@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-04-15T10:19:30.951064+00:00",
+  "fetched_at": "2026-04-16T10:19:06.449865+00:00",
   "articles": [
+    {
+      "date": "APR 15, 2026",
+      "title": "Canada’s largest automotive manufacturers form new association",
+      "description": "Note: Today we launched a new association along with Honda, a partner in this venture. Please find below the release announcing the launch of the Pacific Manufacturing Association of Canada (PMAC).",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/PMAC_LOGO_ENG_COL-H?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/canada-s-largest-automotive-manufacturers-form-new-association.html"
+    },
     {
       "date": "APR 13, 2026",
       "title": "Toyota Canada to invest over $300 million building three new facilities  to better support its customers and dealers across the country",
@@ -29,13 +36,6 @@
       "description": "TORONTO, February 12, 2026 - Toyota Canada has received eight Canadian Black Book (CBB) 2026 Best Residual Value Awards , including the Overall Brand awards in both the Car and SUV/Truck categories.",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Toyota_CIAS_Awards-2?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-recognized-by-canadian-black-book-with-multiple-20.html"
-    },
-    {
-      "date": "FEB 12, 2026",
-      "title": "Toyota Canada CEO outlines company’s approach to “unprecedented uncertainty”",
-      "description": "Cyril Dimitris addresses industry stakeholders ahead of Canadian International Auto Show",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Toyota_Event-8?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-ceo-outlines-company-s-approach-to--unprecedented-.html"
     }
   ]
 }
