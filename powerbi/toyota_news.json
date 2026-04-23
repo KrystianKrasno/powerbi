@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-04-22T10:21:50.882056+00:00",
+  "fetched_at": "2026-04-23T10:23:49.887134+00:00",
   "articles": [
+    {
+      "date": "APR 22, 2026",
+      "title": "Toyota and Woven by Toyota Unveil New  AI Technologies to Drive Kakezan",
+      "description": "TOKYO, April 22, 2026 – Toyota Motor Corporation (\"Toyota\") and Woven by Toyota, Inc. (\"WbyT\") today unveiled technologies designed to accelerate innovation and drive Kakezan at Toyota Woven City (\"Woven City\"), which officially launched in September 2025.",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Woven-City-Inventor-Garage(Exterior)?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-and-woven-by-toyota-unveil-new--ai-technologies-to-drive-.html"
+    },
     {
       "date": "APR 16, 2026",
       "title": "Toyota again ranks among 10 most respected companies in Canada: Leger Reputation Study",
@@ -29,13 +36,6 @@
       "description": "TORONTO, April 1 st , 2026 – Toyota Canada Inc. (TCI) continues to see strong demand for its electrified vehicles, reaching a record of 15,057 electrified units sold in March 2026, up 20.9% year-over-year, for a record total of 29,415 electrified vehicles sold during Q1 2026.",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2026_Toyota_C-HR_XSE_Tandoori_030-cropH?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-march-and-q1-sales-results.html"
-    },
-    {
-      "date": "FEB 13, 2026",
-      "title": "Toyota honoured with multiple 2026 AutoTrader Awards and voted Canada’s most trusted automaker",
-      "description": "TORONTO, February 13, 2026 – Toyota Canada’s commitment to offering Canadians a full range of stylish, well-engineered vehicles that represent excellent value for money has earned the company seven 2026 AutoTrader Awards. AutoTrader announced the awards as part of the events at the 2026 Canadian International Auto Show in Toronto.",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2026_Toyota_RAV4_Woodland-15?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/toyota-honoured-with-multiple-2026-autotrader-awards-and-voted-c.html"
     }
   ]
 }
