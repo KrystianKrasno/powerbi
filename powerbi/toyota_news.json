@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-05-01T10:25:29.700144+00:00",
+  "fetched_at": "2026-05-02T10:01:39.901380+00:00",
   "articles": [
+    {
+      "date": "MAY 01, 2026",
+      "title": "Toyota Canada Releases April Sales Results",
+      "description": "Best month ever for redesigned Canadian-assembled RAV4 Hybrid",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2026_Toyota RAV4 HEV_Woodland_UrbanRock_033?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-april-sales-results.html"
+    },
     {
       "date": "APR 22, 2026",
       "title": "Toyota and Woven by Toyota Unveil New  AI Technologies to Drive Kakezan",
@@ -29,13 +36,6 @@
       "description": "New buildings to be Canadian Green Building Council LEED® v4 Gold , Net Zero Carbon Building – Design™ and Rick Hansen Foundation Accessibility Certification™ Gold certified",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/TOYOTA HQ-EXTERIOR DESIGN PRELIMINARY CONCEPT?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-to-invest-over--300-million-building-three-new-fac.html"
-    },
-    {
-      "date": "APR 01, 2026",
-      "title": "Toyota Canada Releases March and Q1 Sales Results",
-      "description": "TORONTO, April 1 st , 2026 – Toyota Canada Inc. (TCI) continues to see strong demand for its electrified vehicles, reaching a record of 15,057 electrified units sold in March 2026, up 20.9% year-over-year, for a record total of 29,415 electrified vehicles sold during Q1 2026.",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2026_Toyota_C-HR_XSE_Tandoori_030-cropH?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-march-and-q1-sales-results.html"
     }
   ]
 }
