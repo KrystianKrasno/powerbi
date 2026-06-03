@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-06-02T12:45:52.074491+00:00",
+  "fetched_at": "2026-06-03T13:19:50.756903+00:00",
   "articles": [
+    {
+      "date": "JUN 02, 2026",
+      "title": "Toyota Canada Releases May Sales Results",
+      "description": "Best month ever for redesigned Canadian-assembled RAV4 Hybrid",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2026_Toyota_RAV4_Limited-17-crop?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-may-sales-results.html"
+    },
     {
       "date": "MAY 01, 2026",
       "title": "Toyota Canada Releases April Sales Results",
@@ -29,13 +36,6 @@
       "description": "Note: Today we launched a new association along with Honda, a partner in this venture. Please find below the release announcing the launch of the Pacific Manufacturing Association of Canada (PMAC).",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/PMAC_LOGO_ENG_COL-H?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/canada-s-largest-automotive-manufacturers-form-new-association.html"
-    },
-    {
-      "date": "APR 13, 2026",
-      "title": "Toyota Canada to invest over $300 million building three new facilities  to better support its customers and dealers across the country",
-      "description": "New buildings to be Canadian Green Building Council LEED® v4 Gold , Net Zero Carbon Building – Design™ and Rick Hansen Foundation Accessibility Certification™ Gold certified",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/TOYOTA HQ-EXTERIOR DESIGN PRELIMINARY CONCEPT?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-to-invest-over--300-million-building-three-new-fac.html"
     }
   ]
 }
