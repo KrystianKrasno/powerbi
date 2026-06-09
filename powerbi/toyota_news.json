@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-06-08T13:10:16.328075+00:00",
+  "fetched_at": "2026-06-09T12:07:19.697422+00:00",
   "articles": [
+    {
+      "date": "JUN 09, 2026",
+      "title": "TOYOTA RACING aiming for Le Mans victory",
+      "description": "TORONTO, June 9, 2026 – TOYOTA RACING will challenge for its sixth victory – and fulfilment of its new For the Engineering Race slogan – in the Le Mans 24 Hours on 13-14 June with the TR010 HYBRID Hypercar.",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/85548-2026tr010hybridwecfinalgruppe4k6-edit?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-racing-aiming-for-le-mans-victory.html"
+    },
     {
       "date": "JUN 02, 2026",
       "title": "Toyota Canada Releases May Sales Results",
@@ -29,13 +36,6 @@
       "description": "Toyota also named as the #1 most reputable company in the automotive sector for the ninth consecutive year, according to Canadians polled",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Sceal-CAN-EN-2026?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-again-ranks-among-10-most-respected-companies-in-canada--.html"
-    },
-    {
-      "date": "APR 15, 2026",
-      "title": "Canada’s largest automotive manufacturers form new association",
-      "description": "Note: Today we launched a new association along with Honda, a partner in this venture. Please find below the release announcing the launch of the Pacific Manufacturing Association of Canada (PMAC).",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/PMAC_LOGO_ENG_COL-H?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/canada-s-largest-automotive-manufacturers-form-new-association.html"
     }
   ]
 }
