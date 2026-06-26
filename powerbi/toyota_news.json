@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-06-25T11:42:24.552815+00:00",
+  "fetched_at": "2026-06-26T11:46:48.255564+00:00",
   "articles": [
+    {
+      "date": "JUN 25, 2026",
+      "title": "Sixth J.D. Power Plant Quality Award for TMMC’s North Plant",
+      "description": "TMMC remains the most awarded automotive manufacturing plant in the world",
+      "image_url": "https://media.toyota.ca/content/dam/media-toyota/general/2026-jd--power-plant-quality-award/102A7337F.jpg/jcr:content/renditions/cq5dam.thumbnail.140.100.png",
+      "url": "https://media.toyota.ca/en/releases/2026/sixth-j-d--power-plant-quality-award-for-tmmc-s-north-plant.html"
+    },
     {
       "date": "JUN 09, 2026",
       "title": "TOYOTA RACING aiming for Le Mans victory",
@@ -29,13 +36,6 @@
       "description": "TOKYO, April 22, 2026 – Toyota Motor Corporation (\"Toyota\") and Woven by Toyota, Inc. (\"WbyT\") today unveiled technologies designed to accelerate innovation and drive Kakezan at Toyota Woven City (\"Woven City\"), which officially launched in September 2025.",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Woven-City-Inventor-Garage-Exterior?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-and-woven-by-toyota-unveil-new--ai-technologies-to-drive-.html"
-    },
-    {
-      "date": "APR 16, 2026",
-      "title": "Toyota again ranks among 10 most respected companies in Canada: Leger Reputation Study",
-      "description": "Toyota also named as the #1 most reputable company in the automotive sector for the ninth consecutive year, according to Canadians polled",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Sceal-CAN-EN-2026?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/toyota-again-ranks-among-10-most-respected-companies-in-canada--.html"
     }
   ]
 }
