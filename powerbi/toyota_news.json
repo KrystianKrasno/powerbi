@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-06-30T11:46:40.952844+00:00",
+  "fetched_at": "2026-07-01T12:10:55.458086+00:00",
   "articles": [
+    {
+      "date": "JUN 30, 2026",
+      "title": "Joby Aviation and Toyota Motor Corporation Launch Initial Phase of a Strategic Manufacturing Alliance to Realize Air Mobility for All",
+      "description": "Goal is to build up commercial production capability, advance manufacturing excellence, and prepare for scale-up of electric air taxi production",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/HERO-IMAGE-20251129-Toyota_Gazoo-EA200167?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/joby-aviation-and-toyota-motor-corporation-launch-initial-phase-.html"
+    },
     {
       "date": "JUN 25, 2026",
       "title": "Sixth J.D. Power Plant Quality Award for TMMC’s North Plant",
@@ -29,13 +36,6 @@
       "description": "Best month ever for redesigned Canadian-assembled RAV4 Hybrid",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2026_Toyota RAV4 HEV_Woodland_UrbanRock_033?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-april-sales-results.html"
-    },
-    {
-      "date": "APR 22, 2026",
-      "title": "Toyota and Woven by Toyota Unveil New  AI Technologies to Drive Kakezan",
-      "description": "TOKYO, April 22, 2026 – Toyota Motor Corporation (\"Toyota\") and Woven by Toyota, Inc. (\"WbyT\") today unveiled technologies designed to accelerate innovation and drive Kakezan at Toyota Woven City (\"Woven City\"), which officially launched in September 2025.",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Woven-City-Inventor-Garage-Exterior?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/toyota-and-woven-by-toyota-unveil-new--ai-technologies-to-drive-.html"
     }
   ]
 }
