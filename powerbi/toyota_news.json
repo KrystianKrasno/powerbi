@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-07-02T11:37:06.709699+00:00",
+  "fetched_at": "2026-07-03T11:35:44.514315+00:00",
   "articles": [
+    {
+      "date": "JUL 02, 2026",
+      "title": "Toyota Canada Releases June, Q2 and first half of 2026 Sales Results",
+      "description": "Record sales of electrified vehicles for June, Q2 and first half of 2026",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2024_land_cruiser_heritageblue_025-toyota logo-crop?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-june--q2-and-first-half-of-2026-sales-res.html"
+    },
     {
       "date": "JUN 30, 2026",
       "title": "Joby Aviation and Toyota Motor Corporation Launch Initial Phase of a Strategic Manufacturing Alliance to Realize Air Mobility for All",
@@ -29,13 +36,6 @@
       "description": "Best month ever for redesigned Canadian-assembled RAV4 Hybrid",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2026_Toyota_RAV4_Limited-17-crop?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-may-sales-results.html"
-    },
-    {
-      "date": "MAY 01, 2026",
-      "title": "Toyota Canada Releases April Sales Results",
-      "description": "Best month ever for redesigned Canadian-assembled RAV4 Hybrid",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2026_Toyota RAV4 HEV_Woodland_UrbanRock_033?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-april-sales-results.html"
     }
   ]
 }
