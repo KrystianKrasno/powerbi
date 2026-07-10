@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-07-09T12:09:30.528840+00:00",
+  "fetched_at": "2026-07-10T11:55:38.646597+00:00",
   "articles": [
+    {
+      "date": "JUL 09, 2026",
+      "title": "Sixth J.D. Power Plant Quality Award for TMMC’s North Plant",
+      "description": "TMMC remains the most awarded automotive manufacturing plant in the world",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/TMMC-1?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/sixth-j-d--power-plant-quality-award-for-tmmc-s-north-plant.html"
+    },
     {
       "date": "JUL 02, 2026",
       "title": "Toyota Canada Releases June, Q2 and first half of 2026 Sales Results",
@@ -15,13 +22,6 @@
       "description": "Goal is to build up commercial production capability, advance manufacturing excellence, and prepare for scale-up of electric air taxi production",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/HERO-IMAGE-20251129-Toyota_Gazoo-EA200167?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/joby-aviation-and-toyota-motor-corporation-launch-initial-phase-.html"
-    },
-    {
-      "date": "JUN 25, 2026",
-      "title": "Sixth J.D. Power Plant Quality Award for TMMC’s North Plant",
-      "description": "TMMC remains the most awarded automotive manufacturing plant in the world",
-      "image_url": "https://media.toyota.ca/content/dam/media-toyota/general/2026-jd--power-plant-quality-award/102A7337F.jpg/jcr:content/renditions/cq5dam.thumbnail.140.100.png",
-      "url": "https://media.toyota.ca/en/releases/2026/sixth-j-d--power-plant-quality-award-for-tmmc-s-north-plant.html"
     },
     {
       "date": "JUN 09, 2026",
