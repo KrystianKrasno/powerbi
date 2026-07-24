@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-07-23T11:13:29.275133+00:00",
+  "fetched_at": "2026-07-24T11:05:14.385440+00:00",
   "articles": [
+    {
+      "date": "JUL 23, 2026",
+      "title": "Toyota Mobility Foundation and MaRS Announce Call for Applicants for Mobility Unlimited Hub’s Third Cohort",
+      "description": "Startups tackling active mobility and cognitive health challenges are invited to apply to this targeted program.",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Toyota_Mobility_Foundation_Logo_capture?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-mobility-foundation-and-mars-announce-call-for-applicants.html"
+    },
     {
       "date": "JUL 09, 2026",
       "title": "Sixth J.D. Power Plant Quality Award for TMMC’s North Plant",
@@ -29,13 +36,6 @@
       "description": "TORONTO, June 9, 2026 – TOYOTA RACING will challenge for its sixth victory – and fulfilment of its new For the Engineering Race slogan – in the Le Mans 24 Hours on 13-14 June with the TR010 HYBRID Hypercar.",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/85548-2026tr010hybridwecfinalgruppe4k6-edit?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-racing-aiming-for-le-mans-victory.html"
-    },
-    {
-      "date": "JUN 02, 2026",
-      "title": "Toyota Canada Releases May Sales Results",
-      "description": "Best month ever for redesigned Canadian-assembled RAV4 Hybrid",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2026_Toyota_RAV4_Limited-17-crop?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-may-sales-results.html"
     }
   ]
 }
