@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-08-04T11:27:57.026109+00:00",
+  "fetched_at": "2026-08-05T11:23:19.503203+00:00",
   "articles": [
+    {
+      "date": "AUG 04, 2026",
+      "title": "Toyota Canada releases July sales results",
+      "description": "TORONTO, August 4, 2026 – Toyota Canada Inc. (TCI) recorded its best ever July for electrified vehicle sales at 16,481 electrified units sold, up 47.5% year-over-year (YOY) and representing 65.8% of the company’s overall sales last month.",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/MY23_GR_Corolla_Circuit_Heavy_Metal_92-ToyotaLogo-crop?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-july-sales-results.html"
+    },
     {
       "date": "JUL 23, 2026",
       "title": "Toyota Mobility Foundation and MaRS Announce Call for Applicants for Mobility Unlimited Hub’s Third Cohort",
@@ -29,13 +36,6 @@
       "description": "Goal is to build up commercial production capability, advance manufacturing excellence, and prepare for scale-up of electric air taxi production",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/HERO-IMAGE-20251129-Toyota_Gazoo-EA200167?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/joby-aviation-and-toyota-motor-corporation-launch-initial-phase-.html"
-    },
-    {
-      "date": "JUN 09, 2026",
-      "title": "TOYOTA RACING aiming for Le Mans victory",
-      "description": "TORONTO, June 9, 2026 – TOYOTA RACING will challenge for its sixth victory – and fulfilment of its new For the Engineering Race slogan – in the Le Mans 24 Hours on 13-14 June with the TR010 HYBRID Hypercar.",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/85548-2026tr010hybridwecfinalgruppe4k6-edit?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/toyota-racing-aiming-for-le-mans-victory.html"
     }
   ]
 }
