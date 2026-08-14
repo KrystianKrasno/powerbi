@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-08-13T10:11:46.007986+00:00",
+  "fetched_at": "2026-08-14T10:07:35.975928+00:00",
   "articles": [
+    {
+      "date": "AUG 13, 2026",
+      "title": "Toyota contributes $100,000 to wildfire relief efforts in Canada",
+      "description": "Toyota Canada, Toyota Motor Manufacturing Canada, and Toyota Financial Services donate $100,000 to Canadian Red Cross Canadian Wildfire Fund",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/52219_AA0I3764?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-contributes--100-000-to-wildfire-relief-efforts-in-canada.html"
+    },
     {
       "date": "AUG 04, 2026",
       "title": "Toyota Canada releases July sales results",
@@ -29,13 +36,6 @@
       "description": "Record sales of electrified vehicles for June, Q2 and first half of 2026",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2024_land_cruiser_heritageblue_025-toyota logo-crop?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-june--q2-and-first-half-of-2026-sales-res.html"
-    },
-    {
-      "date": "JUN 30, 2026",
-      "title": "Joby Aviation and Toyota Motor Corporation Launch Initial Phase of a Strategic Manufacturing Alliance to Realize Air Mobility for All",
-      "description": "Goal is to build up commercial production capability, advance manufacturing excellence, and prepare for scale-up of electric air taxi production",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/HERO-IMAGE-20251129-Toyota_Gazoo-EA200167?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/joby-aviation-and-toyota-motor-corporation-launch-initial-phase-.html"
     }
   ]
 }
