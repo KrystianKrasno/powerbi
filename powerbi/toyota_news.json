@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-09-01T14:01:54.361571+00:00",
+  "fetched_at": "2026-09-02T13:26:48.316195+00:00",
   "articles": [
+    {
+      "date": "SEP 01, 2026",
+      "title": "Toyota Canada releases August sales results",
+      "description": "TORONTO, September 1, 2026 – Electrified vehicles led August sales for Toyota Canada Inc. (TCI), reaching a record of 14,461 electrified units sold last month, up 35.6% year over year (YOY).",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2026_Toyota_RAV4_HEV_Woodland_033-crop?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-august-sales-results.html"
+    },
     {
       "date": "AUG 13, 2026",
       "title": "Toyota contributes $100,000 to wildfire relief efforts in Canada",
@@ -29,13 +36,6 @@
       "description": "TMMC remains the most awarded automotive manufacturing plant in the world",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/TMMC-1?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/sixth-j-d--power-plant-quality-award-for-tmmc-s-north-plant.html"
-    },
-    {
-      "date": "JUL 02, 2026",
-      "title": "Toyota Canada Releases June, Q2 and first half of 2026 Sales Results",
-      "description": "Record sales of electrified vehicles for June, Q2 and first half of 2026",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2024_land_cruiser_heritageblue_025-toyota logo-crop?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-june--q2-and-first-half-of-2026-sales-res.html"
     }
   ]
 }
