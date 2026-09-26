@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-09-25T14:30:21.375901+00:00",
+  "fetched_at": "2026-09-26T13:40:51.217143+00:00",
   "articles": [
+    {
+      "date": "SEP 25, 2026",
+      "title": "Toyota Motor Corporation Chairman Akio Toyoda Inducted into the Automotive Hall of Fame",
+      "description": "TORONTO, September 24, 2026 – In recognition of his global automotive leadership that has brought passion, performance and purpose into modern mobility, Akio Toyoda, chairman of the board, Toyota Motor Corporation (TMC), was inducted into the Automotive Hall of Fame last night in Detroit.",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/AHOF-DOE_20260923_0060?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-motor-corporation-chairman-akio-toyoda-inducted-into-the-.html"
+    },
     {
       "date": "SEP 01, 2026",
       "title": "Toyota Canada releases August sales results",
@@ -29,13 +36,6 @@
       "description": "Startups tackling active mobility and cognitive health challenges are invited to apply to this targeted program.",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Toyota_Mobility_Foundation_Logo_capture?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-mobility-foundation-and-mars-announce-call-for-applicants.html"
-    },
-    {
-      "date": "JUL 09, 2026",
-      "title": "Sixth J.D. Power Plant Quality Award for TMMC’s North Plant",
-      "description": "TMMC remains the most awarded automotive manufacturing plant in the world",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/TMMC-1?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/sixth-j-d--power-plant-quality-award-for-tmmc-s-north-plant.html"
     }
   ]
 }
