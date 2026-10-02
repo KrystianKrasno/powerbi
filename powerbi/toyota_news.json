@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-10-01T16:11:34.344780+00:00",
+  "fetched_at": "2026-10-02T15:36:08.712326+00:00",
   "articles": [
+    {
+      "date": "OCT 01, 2026",
+      "title": "Toyota Canada releases September and Q3 2026 sales results",
+      "description": "Annual electrified vehicle sales record set in first nine months of 2026",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/2023_GR_Corolla_Morizo_cropHR?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-september-and-q3-2026-sales-results.html"
+    },
     {
       "date": "SEP 25, 2026",
       "title": "Toyota Motor Corporation Chairman Akio Toyoda Inducted into the Automotive Hall of Fame",
@@ -29,13 +36,6 @@
       "description": "TORONTO, August 4, 2026 – Toyota Canada Inc. (TCI) recorded its best ever July for electrified vehicle sales at 16,481 electrified units sold, up 47.5% year-over-year (YOY) and representing 65.8% of the company’s overall sales last month.",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/MY23_GR_Corolla_Circuit_Heavy_Metal_92-ToyotaLogo-crop?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-july-sales-results.html"
-    },
-    {
-      "date": "JUL 23, 2026",
-      "title": "Toyota Mobility Foundation and MaRS Announce Call for Applicants for Mobility Unlimited Hub’s Third Cohort",
-      "description": "Startups tackling active mobility and cognitive health challenges are invited to apply to this targeted program.",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Toyota_Mobility_Foundation_Logo_capture?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/toyota-mobility-foundation-and-mars-announce-call-for-applicants.html"
     }
   ]
 }
