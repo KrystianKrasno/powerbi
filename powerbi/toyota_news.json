@@ -1,7 +1,14 @@
 {
   "source": "Toyota Canada Media",
-  "fetched_at": "2026-10-18T13:06:03.325319+00:00",
+  "fetched_at": "2026-10-19T16:19:43.060961+00:00",
   "articles": [
+    {
+      "date": "OCT 19, 2026",
+      "title": "Toyota Canada receives eight 2026 Canadian Black Book Best Retained Value  Awards",
+      "description": "TORONTO, October 19, 2026 – Toyota Canada Inc. (TCI) has been recognized today by Canadian Black Book (CBB) with eight Best Retained Value Awards for 2026.",
+      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/Toyota CBB Best Retained Values Award Steve Pilkey and Daniel Ross?$Media-Thumbnail$",
+      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-receives-eight-2026-canadian-black-book-best-retai.html"
+    },
     {
       "date": "OCT 01, 2026",
       "title": "Toyota Canada releases September and Q3 2026 sales results",
@@ -29,13 +36,6 @@
       "description": "Toyota Canada, Toyota Motor Manufacturing Canada, and Toyota Financial Services donate $100,000 to Canadian Red Cross Canadian Wildfire Fund",
       "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/52219_AA0I3764?$Media-Thumbnail$",
       "url": "https://media.toyota.ca/en/releases/2026/toyota-contributes--100-000-to-wildfire-relief-efforts-in-canada.html"
-    },
-    {
-      "date": "AUG 04, 2026",
-      "title": "Toyota Canada releases July sales results",
-      "description": "TORONTO, August 4, 2026 – Toyota Canada Inc. (TCI) recorded its best ever July for electrified vehicle sales at 16,481 electrified units sold, up 47.5% year-over-year (YOY) and representing 65.8% of the company’s overall sales last month.",
-      "image_url": "https://toyotacanada.scene7.com/is/image/toyotacanada/MY23_GR_Corolla_Circuit_Heavy_Metal_92-ToyotaLogo-crop?$Media-Thumbnail$",
-      "url": "https://media.toyota.ca/en/releases/2026/toyota-canada-releases-july-sales-results.html"
     }
   ]
 }
